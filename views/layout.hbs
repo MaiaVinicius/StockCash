@@ -7,6 +7,7 @@
     <link rel='stylesheet' href='/css/animate.min.css'/>
     <link rel='stylesheet' href='/css/docs.min.css'/>
     <link rel='stylesheet' href='/css/shCoreDefault.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'/>
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -15,47 +16,166 @@
     <script type="text/javascript" src="/js/custom.min.js"></script>
 
 </head>
-<body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">{{title}}</a>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <!--<a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>-->
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section active">
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <h2>GRUPO TESTE</h2>
+                            </div>
+                        </div>
+                        <ul class="nav side-menu" style="">
+                            <li class="active"><a><i class="fa fa-home"></i> Início <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a><i class="fa fa-file"></i> Resumo <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a><i class="fa fa-arrow-up"></i> Comprar ações <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a><i class="fa fa-arrow-down"></i> Vender ações <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a><i class="fa fa-line-chart"></i> Relatórios <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                            <li><a><i class="fa fa-question"></i> Instruções <span
+                                    class="fa fa-chevron-down"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio</a></li>
-                <li><a href="/users/new">Novo Usuarios</a></li>
-                <li><a href=/competitions/new">Nova Competicao</a></li>
-                <li><a href="/groups/new">Novo grupo</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="images/img.jpg" alt="">John Doe
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Perfil</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Configurações</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Ajuda</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">6</span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
+                                        <span>
+                          <span>John Smith</span>
+                          <span class="time">3 mins ago</span>
+                        </span>
+                                        <span class="message">
+                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Default</a></li>
-                <li><a href="../navbar-static-top/">Static top</a></li>
-                <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" style="min-height: 1704px;">
+        </div>
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Desenvolvido pela Universidade Federal Rural do Rio de Janeiro
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
     </div>
-</nav>
+</div>
 {{{body}}}
 </body>
 </html>
