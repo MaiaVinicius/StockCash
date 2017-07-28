@@ -9,6 +9,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var competitions = require('./routes/competition');
 var groups = require('./routes/groups');
+var resumo = require('./routes/resumo');
+var tabelagrupos = require('./routes/tabelagrupos');
+
 
 var app = express();
 
@@ -28,6 +31,8 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/competitions', competitions);
 app.use('/groups', groups);
+app.use('/resumo', resumo);
+app.use('/tabelagrupos', tabelagrupos);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

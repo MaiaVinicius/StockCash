@@ -1,0 +1,30 @@
+body > div > div > div.right_col > div > div:nth-child(2) > div.col-lg-8.col-md-12.col-sm-12.col-xs-12 > div:nth-child(2) > div > div.x_content >  table > thead > tr > th {
+    background-color: #2a3f54;
+    color: white;
+    text-align: center;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    vertical-align: middle;
+
+}
+
+body > div > div > div.right_col > div > div:nth-child(2) > div.col-lg-8.col-md-12.col-sm-12.col-xs-12 > div:nth-child(2) > div > div.x_content >  table > tbody {
+    font-weight: bold;
+}
+
+
+body > div > div > div.right_col > div > div:nth-child(2) > div:nth-child(3) > div > div > div.x_content > table > thead > tr > th {
+    background-color: #2a3f54;
+    color: white;
+    text-align: center;
+}
+
+body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+
+}

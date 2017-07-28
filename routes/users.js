@@ -6,7 +6,7 @@ var College = require("./../models/College");
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     User.getAll(function (result) {
-        res.render('user_list', {users: result});
+        res.render('new_user', {users: result});
     });
 });
 

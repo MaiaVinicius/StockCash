@@ -17,7 +17,7 @@ router.get('/new', function (req, res, next) {
 });
 
 
-router.post('/new', function (req, res, next) {
+router.post('/resumo', function (req, res, next) {
     var postData = req.body;
     postData.users = postData.members.join(",");
     Group.new(postData);

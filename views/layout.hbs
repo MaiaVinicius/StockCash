@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel='stylesheet' href='/css/bootstrap.min.css'/>
-    <link rel='stylesheet' href='/css/custom.min.css'/>
-    <link rel='stylesheet' href='/css/animate.min.css'/>
     <link rel='stylesheet' href='/css/docs.min.css'/>
-    <link rel='stylesheet' href='/css/shCoreDefault.css'/>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'/>
+    <link rel='stylesheet' href='/css/jquery.mCustomScrollbar.min.css'/>
 
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/shBrushXml.js"></script>
-    <script type="text/javascript" src="/js/shCore.js"></script>
-    <script type="text/javascript" src="/js/custom.min.js"></script>
+    <link href="css/editado.css" rel="stylesheet">
+    <link rel='stylesheet' href='/css/custom.min.css'/>
+
 
 </head>
 <body class="nav-md">
@@ -23,14 +19,13 @@
     <div class="main_container">
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
+                <div class="navbar nav_title" style="border: 0; vertical-align: center;">
                     <!--<a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>-->
-                    <img src="img/logo.png" alt="..." class="img-circle profile_img">
-
+                    <img src="img/logosm.png" alt="..." class="logo">
                 </div>
-
                 <div class="clearfix"></div>
-                <br><br><br>
+
+                <br>
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section active">
@@ -43,23 +38,23 @@
                             </div>
                         </div>
                         <ul class="nav side-menu" style="">
-                            <li class="active"><a><i class="fa fa-home"></i> Início <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/index"><i class="fa fa-home"></i> Início <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
-                            <li><a><i class="fa fa-file"></i> Resumo <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/resumo"><i class="fa fa-file"></i> Resumo <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
-                            <li><a><i class="fa fa-arrow-up"></i> Comprar ações <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/asdds"><i class="fa fa-arrow-up"></i> Comprar ações <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
-                            <li><a><i class="fa fa-arrow-down"></i> Vender ações <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/asas"><i class="fa fa-arrow-down"></i> Vender ações <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
-                            <li><a><i class="fa fa-line-chart"></i> Relatórios <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/bsbs"><i class="fa fa-line-chart"></i> Relatórios <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
-                            <li><a><i class="fa fa-question"></i> Instruções <span
-                                    class="fa fa-chevron-down"></span></a>
+                            <li><a href="/sad"><i class="fa fa-question"></i> Instruções <span
+                                    class="fa fa-chevron-right"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -169,18 +164,27 @@
 
         <!-- page content -->
         <div class="right_col" role="main" style="min-height: 1704px;">
+            {{{body}}}
         </div>
 
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                Desenvolvido pela Universidade Federal Rural do Rio de Janeiro
+                Desenvolvido por Vinicius Maia & José Renato Baroni
             </div>
             <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
     </div>
 </div>
-{{{body}}}
+
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fastclick.js"></script>
+<script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="vendors/Chart.js/dist/Chart.min.js"></script>
+
+<script src="/js/custom.min.js"></script>
+
 </body>
 </html>
