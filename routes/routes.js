@@ -1,15 +1,24 @@
-/**
- * Created by MaiaVinicius on 25/07/17.
- */
+var express = require('express');
+var router = express.Router();
+
+
 var index = require('./index');
 var users = require('./users');
-var resumo = require('./resumo')
+var competitions = require('./competition');
+var groups = require('./groups');
+var resumo = require('./resumo');
 var tabelagrupos = require('./tabelagrupos');
+var login = require ("./login");
+var logout = require("./logout");
 
-var express = require('express');
-var app = express();
+router.use('/', index);
+router.use('/users', users);
+router.use('/competitions', competitions);
+router.use('/groups', groups);
+router.use('/resumo', resumo);
+router.use('/tabelagrupos', tabelagrupos);
+router.use("/login", login);
+router.use("/logout", logout);
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/resumo', resumo);
-app.use('/tabelagrupos', tabelagrupos);
+
+module.exports = router;

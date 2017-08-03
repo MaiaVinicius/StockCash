@@ -5,8 +5,8 @@ var Group = require("./../models/Group");
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-    Competition.getAllCompetitions(function (result) {
-        res.render('user_list', {users: result});
+    Competition.getAll(function (competitions) {
+        res.render('competition_list', {competitions: competitions});
     });
 });
 
@@ -22,5 +22,6 @@ router.post('/new', function (req, res, next) {
     Group.new(postData);
     res.redirect("/");
 });
+
 
 module.exports = router;

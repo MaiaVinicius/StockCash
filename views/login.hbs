@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stock Clash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet' href='/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/css/docs.min.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'/>
+    <link rel='stylesheet' href='/css/jquery.mCustomScrollbar.min.css'/>
+
+    <link href="css/editado.css" rel="stylesheet">
+    <link rel='stylesheet' href='/css/custom.min.css'/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+</head>
+
+
+<body class="login">
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+        <div class="animate form login_form">
+            <section class="login_content">
+                <form action="/login" method="post">
+                    <h1>Login</h1>
+                    <div>
+                        <input name="user" type="text" class="form-control" placeholder="Nome de Usuário ou e-mail"
+                               required>
+                    </div>
+                    <div>
+                        <input name="password" type="password" class="form-control" placeholder="Senha" required="">
+                    </div>
+                    {{#if success}}
+                        <div class="alert alert-danger">
+                            <strong>Atencao!</strong> Seu usuario e senha nao conferem.
+                        </div>
+                    {{/if}}
+
+                    <div>
+                        <button class="btn btn-default submit">Entrar</button>
+                        <a class="reset_pass" href="#">Esqueceu sua Senha?</a>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">Primeira vez no site?
+                            <a href="#signup" class="to_register"> Criar conta </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br>
+
+                        <div>
+                            <h1><!--<i clas"fa fa-paw"></i>--> Stock Clash</h1>
+                            <p>Desenvolvido por José Renato Baroni & Vinicius Maia</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+            <section class="login_content">
+                <form>
+                    <h1>Create Account</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Usuario" required="">
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" placeholder="Email" required="">
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Password" required="">
+                    </div>
+                    <div>
+                        <a class="btn btn-default submit" href="index.html">Submit</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="separator">
+                        <p class="change_link">Already a member ?
+                            <a href="#signin" class="to_register"> Log in </a>
+                        </p>
+
+                        <div class="clearfix"></div>
+                        <br>
+
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>

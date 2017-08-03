@@ -10,14 +10,10 @@ var connection = mysql.createConnection({
     database: 'simuladorbovespadb'
 });
 
-/*try {
-    connection.connect(function (err) {
-        if (err) throw err;
-        console.log("Connected!");
-    });
-}catch (err){
-    console.log(err)
-}*/
+connection.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
 
 
 module.exports = connection;

@@ -1,0 +1,44 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Usuario</th>
+        <th>Mensagem</th>
+        <th>Data hora</th>
+        <th>#</th>
+        <th>#</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each solicitations}}
+        <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.message}}</td>
+            <td>{{this.datetime}}</td>
+            <td>
+                <button data-id="{{this.id}}" data-val="1" type="button"
+                        class="btn-accept-invite btn btn-success btn-xs"><i
+                        class="fa fa-check"></i>
+                    Aceitar
+                </button>
+            </td>
+            <td>
+                <button data-id="{{this.id}}" data-val="-1" type="button"
+                        class="btn-refuse-invite btn btn-danger btn-xs"><i
+                        class="fa fa-trash"></i>
+                    Recusar
+                </button>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
+<script>
+    $(".btn-accept-invite, .btn-refuse-invite").on("click", function () {
+        var val = $(this).attr("data-val");
+        var inviteId = $(this).attr("data-id");
+
+        $.post("admin/invite_response", {val: val, inviteId: inviteId}, function () {
+            location.reload();
+        });
+    });
+</script>

@@ -16,3 +16,11 @@ module.exports.new = function (data) {
         console.log(err)
     });
 };
+
+module.exports.login = function (user,pass,cb) {
+    connection.query("SELECT * FROM users where (username = ? or email = ?) and password = md5(?)",
+        [user,user, pass], function (err, result) {
+
+        cb(result);
+    });
+};

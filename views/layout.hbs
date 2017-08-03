@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Stock Cash</title>
+    <title>Stock Clash</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel='stylesheet' href='/css/bootstrap.min.css'/>
@@ -11,7 +11,7 @@
 
     <link href="css/editado.css" rel="stylesheet">
     <link rel='stylesheet' href='/css/custom.min.css'/>
-
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
 
 </head>
 <body class="nav-md">
@@ -75,10 +75,12 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="images/img.jpg" alt="">John Doe
+                                {{user.name}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="/competitions">Competicoes</a></li>
+                                <li><a href="/groups">Grupo</a></li>
                                 <li><a href="javascript:;"> Perfil</a></li>
                                 <li>
                                     <a href="javascript:;">
@@ -87,7 +89,7 @@
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Ajuda</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
+                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Sair</a></li>
                             </ul>
                         </li>
 
@@ -178,7 +180,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/fastclick.js"></script>
 <script src="/js/jquery.mCustomScrollbar.concat.min.js"></script>

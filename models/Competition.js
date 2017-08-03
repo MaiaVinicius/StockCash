@@ -4,7 +4,11 @@
 var connection = require("./../connection");
 
 module.exports.getAll = function (cb) {
-    connection.query("select * from users", function (err, result) {
+    connection.query("SELECT c.*, \n" +
+        "(SELECT group_concat(g.name)names FROM competitionxgroups cxg \n" +
+        "LEFT JOIN groups g ON g.id = cxg.group_id \n" +
+        "WHERE cxg.competition_id = c.id AND g.name is not null)groups\n" +
+        " FROM competitions c", function (err, result) {
 
         cb(result);
     });
