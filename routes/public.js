@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function (req, res, next) {
-    res.render('tabelagrupos');
-
+router.get("/groups/", function (req, res) {
+    res.render("group_overview");
 });
+
+
 
 
 module.exports = router;

@@ -1,0 +1,101 @@
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 headerhome">
+                <h1 style="opacity: 0.80;"><i class="fa fa-group"></i><i style="font-size: 20px;" class="fa fa-cogs"></i> Gerencie seu grupo</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-xs-12 col-sm-12 col-md-offset-3 col-md-6 col-lg-6">
+                <div class="headerhome"><p>Gerencie membros do grupo</p></div>
+                <table class="table" style="border: solid 1px rgba(0,0,0,0.29); text-align: center;">
+                    <thead style="background-color: rgba(42,63,84,1)">
+                    <tr>
+                        <th style="text-align: center; color: white;">Membro</th>
+                        <th style="text-align: center;color: white;">Rentabilidade Mensal</th>
+                        <th style="text-align: center;color: white;">Remover do Grupo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each member}}
+                        <tr>
+                            <td><p>{{this.name}}</p></td>
+                            <td>50%</td>
+                            <td>
+                                <button user-id="{{this.user_id}}" style="height: 30px;width: 40px; text-align: center; padding-bottom: 0px; padding-top: 0px;"
+                                        type="button" class="btn btn-danger removeUser"><i class="fa fa-close"></i></button>
+                            </td>
+                        </tr>
+                    {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <hr>
+        <div class="headerhome"><p>Solicitações</p></div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Mensagem</th>
+                <th>Aceitar</th>
+                <th>Recusar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each solicitations}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.message}}</td>
+                    <td>
+                        <button user-id ="{{this.user_id}}" data-id="{{this.id}}" data-val=1 type="button"
+                                class="btn-accept-invite btn btn-success btn-xs"><i
+                                class="fa fa-check"></i>
+                            Aceitar
+                        </button>
+                    </td>
+                    <td>
+                        <button user-id ="{{this.user_id}}" data-id="{{this.id}}" data-val=-1 type="button"
+                                class="btn-refuse-invite btn btn-danger btn-xs"><i
+                                class="fa fa-trash"></i>
+                            Recusar
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+
+
+        <script>
+            $(".btn-accept-invite, .btn-refuse-invite").on("click", function () {
+                var val = $(this).attr("data-val");
+                var inviteId = $(this).attr("data-id");
+                var userId = $(this).attr("user-id");
+
+                $.post("admin/invite_response", {val: val, inviteId: inviteId, userId: userId}, function () {
+                    location.reload();
+
+                    window.location.reload();
+                });
+            });
+        </script>
+
+        <script>
+            $(".removeUser").on("click", function () {
+                var userId = $(this).attr("user-id");
+
+                $.post("admin/removeuser", {userId: userId});
+                window.location.reload();
+            });
+        </script>
+
+
+    </div>
+</div>
+
+
+

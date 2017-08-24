@@ -1,0 +1,11 @@
+<div class="x_panel">
+    <ul class="list-group">
+        {{#each stocks}}
+            <li class="list-group-item stock" style="cursor:pointer;">
+                <a href="/stock/buy/{{this.symbol}}">{{this.symbol}}</a>
+                <span class="badge">R$ {{this.price}}</span></li>
+        {{/each}}
+    </ul>
+
+
+</div>

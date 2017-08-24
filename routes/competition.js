@@ -6,7 +6,7 @@ var Group = require("./../models/Group");
 /* GET users listing. */
 router.get('/', function (req, res, next) {
     Competition.getAll(function (competitions) {
-        res.render('competition_list', {competitions: competitions});
+        res.render('competition_list', {competitions: competitions, user: req.session.user});
     });
 });
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Stock Clash</title>
+    <title>Stock Clash - Aprenda  Jogando</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel='stylesheet' href='/css/bootstrap.min.css'/>
@@ -12,95 +12,178 @@
 
     <link href="css/editado.css" rel="stylesheet">
     <link rel='stylesheet' href='/css/custom.min.css'/>
-    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel='stylesheet' href='/css/login.css'/>
+
+
 
 </head>
+{{#if registerError}}
+
+    <div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-hidden="true" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a href="/" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                    </a>
+                    <h4 class="modal-title" id="myModalLabel2"><span style="color: red;"> Erro no Registro:</span></h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Usuário ou E-mail já registrados!</h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{{/if}}
 
 
-<body class="login">
-<div>
-    <a class="hiddenanchor" id="signup"></a>
-    <a class="hiddenanchor" id="signin"></a>
+<body>
 
-    <div class="login_wrapper">
-        <div class="animate form login_form">
-            <section class="login_content">
-                <form action="/login" method="post">
-                    <h1>Login</h1>
-                    <div>
-                        <input name="user" type="text" class="form-control" placeholder="Nome de Usuário ou e-mail"
-                               required>
-                    </div>
-                    <div>
-                        <input name="password" type="password" class="form-control" placeholder="Senha" required="">
-                    </div>
-                    {{#if success}}
-                        <div class="alert alert-danger">
-                            <strong>Atencao!</strong> Seu usuario e senha nao conferem.
+<div class="container.fluid">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-6">
+                <div class="logo-header">
+                    <img src="img/logosm.png"
+                </div>
+                <div class="title-header hidden-xs">
+                    <h1>APRENDA A INVESTIR</h1>
+                    <h1>JOGANDO</h1>
+                    <p>Opere em tempo real com ações da bolsa de valores.</p>
+                    <p>Crie um grupo com seus amigos, entre em uma liga e seja campeão</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="active" id="login-form-link">Entrar</a>
                         </div>
-                    {{/if}}
-
-                    <div>
-                        <button class="btn btn-default submit">Entrar</button>
-                        <a class="reset_pass" href="#">Esqueceu sua Senha?</a>
-                    </div>
-
-
-                    <div class="clearfix"></div>
-
-                    <div class="separator">
-                        <p class="change_link">Primeira vez no site?
-                            <a href="#signup" class="to_register"> Criar conta </a>
-                        </p>
-
-                        <div class="clearfix"></div>
-                        <br>
-
-                        <div>
-                            <h1><!--<i clas"fa fa-paw"></i>--> Stock Clash</h1>
-                            <p>Desenvolvido por José Renato Baroni & Vinicius Maia</p>
+                        <div class="col-xs-6">
+                            <a href="#" id="register-form-link">Criar Conta</a>
                         </div>
                     </div>
-                </form>
-            </section>
+                    <hr>
+                </div>
+                <div class="panel-body">
+
+
+                    <form id="login-form" action="/login" method="post" role="form"
+                          style="display: block;">
+                        <div class="form-group">
+                            <input type="text" name="user" id="username" tabindex="1" class="form-control"
+                                   placeholder="Usuário" value="" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" tabindex="2"
+                                   class="form-control" placeholder="Senha" required>
+                        </div>
+                        {{#if loginError}}
+                            <div class="alert alert-danger">
+                                <strong>Atenção!</strong> Seu usuário e senha nao conferem.
+                            </div>
+                        {{/if}}
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input type="submit" name="login-submit" id="login-submit" tabindex="4"
+                                           class="form-control btn btn-login" value="ENTRAR">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <form id="register-form" action="/login/register" method="post"
+                          role="form" style="display: none;">
+                        <div class="form-group">
+                            <input type="text" name="name" id="username" tabindex="1" class="form-control"
+                                   placeholder="Nome" required value="">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" id="username" tabindex="1" class="form-control"
+                                   placeholder="Usuário" required value="">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" tabindex="1" class="form-control"
+                                   placeholder="Endereço de Email" required value="">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" id="password" tabindex="2"
+                                   class="form-control" required placeholder="Senha">
+                        </div>
+                        <select name="college_id" id="" name="college_id" required class="form-control">
+                            {{#each colleges}}
+                                <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                        <div class="form-group">
+                            <div class="row">
+                                <br>
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <input type="submit" name="register-submit" id="register-submit"
+                                           tabindex="4" class="form-control btn btn-register"
+                                           value="CRIAR CONTA">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <div id="register" class="animate form registration_form">
-            <section class="login_content">
-                <form>
-                    <h1>Create Account</h1>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Usuario" required="">
-                    </div>
-                    <div>
-                        <input type="email" class="form-control" placeholder="Email" required="">
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" placeholder="Password" required="">
-                    </div>
-                    <div>
-                        <a class="btn btn-default submit" href="index.html">Submit</a>
-                    </div>
+    </div>
+</div>
 
-                    <div class="clearfix"></div>
+<!-- BODY CONTENT -->
+<div class="container">
+    <div class="row">
 
-                    <div class="separator">
-                        <p class="change_link">Already a member ?
-                            <a href="#signin" class="to_register"> Log in </a>
-                        </p>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="books col-lg-offset-2">
+                <i class="fa fa-line-chart" style="font-size: 50px;"></i>
+                <div class="textbody">
+                    <p><strong>Invista como um Trader</strong></p>
+                    <p>Aprenda a operar ações em tempo real em um layout dinâmico e simples. </p>
+                </div>
+            </div>
+        </div>
 
-                        <div class="clearfix"></div>
-                        <br>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="books col-lg-offset-2">
+                <i class="fa fa-group" style="font-size: 50px;"></i>
+                <div class="textbody">
+                    <p><strong>Jogue com seus amigos</strong></p>
+                    <p>Crie seu grupo, entre em competições e compartilhe suas conquistas com seus contatos. </p>
+                </div>
+            </div>
+        </div>
 
-                    </div>
-                </form>
-            </section>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="books col-lg-offset-2">
+                <i class="fa fa-code" style="font-size: 50px;"></i>
+                <div class="textbody">
+                    <p><strong>Desenvolvido por:</strong></p>
+                    <a href="#"><p><i class="fa fa-user"></i> José Renato Baroni</p></a>
+                    <a href="#"><p><i class="fa fa-user"></i>Vinicius Maia</p></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fastclick.js"></script>
+
+<script src="/js/custom.min.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+
 
 </body>
-
 
 </html>

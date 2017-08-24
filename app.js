@@ -23,8 +23,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({secret: "secrt"}));
+app.use(express.static(path.join(__dirname, '/public')));
+app.set('trust proxy', 1); // trust first proxy
+
+app.use(session({secret: "secret"}));
 
 app.use("/", routes_rota);
 
@@ -35,9 +37,6 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-app.set('trust proxy', 1); // trust first proxy
-
-
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
@@ -46,7 +45,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('404',{layout:false});
 });
 
 module.exports = app;

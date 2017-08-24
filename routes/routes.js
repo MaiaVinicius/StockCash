@@ -1,24 +1,26 @@
 var express = require('express');
 var router = express.Router();
+var isAuth = require("../helpers/isAuth");
 
 
 var index = require('./index');
-var users = require('./users');
 var competitions = require('./competition');
 var groups = require('./groups');
-var resumo = require('./resumo');
-var tabelagrupos = require('./tabelagrupos');
+var dashboard = require('./dashboard');
 var login = require ("./login");
 var logout = require("./logout");
+var public = require("./public");
+var stocks = require("./stocks");
 
 router.use('/', index);
-router.use('/users', users);
-router.use('/competitions', competitions);
-router.use('/groups', groups);
-router.use('/resumo', resumo);
-router.use('/tabelagrupos', tabelagrupos);
+router.use('/competitions', isAuth, competitions);
+router.use('/groups', isAuth, groups);
+router.use('/dashboard', isAuth, dashboard);
 router.use("/login", login);
 router.use("/logout", logout);
+router.use("/public", public);
+router.use("/stocks", stocks);
 
 
 module.exports = router;
+

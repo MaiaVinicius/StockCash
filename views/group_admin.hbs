@@ -4,8 +4,8 @@
         <th>Usuario</th>
         <th>Mensagem</th>
         <th>Data hora</th>
-        <th>#</th>
-        <th>#</th>
+        <th>Aceitar</th>
+        <th>Recusar</th>
     </tr>
     </thead>
     <tbody>
@@ -15,14 +15,14 @@
             <td>{{this.message}}</td>
             <td>{{this.datetime}}</td>
             <td>
-                <button data-id="{{this.id}}" data-val="1" type="button"
+                <button user-id ="{{this.user_id}}" data-id="{{this.id}}" data-val=1 type="button"
                         class="btn-accept-invite btn btn-success btn-xs"><i
                         class="fa fa-check"></i>
                     Aceitar
                 </button>
             </td>
             <td>
-                <button data-id="{{this.id}}" data-val="-1" type="button"
+                <button user-id ="{{this.user_id}}" data-id="{{this.id}}" data-val=-1 type="button"
                         class="btn-refuse-invite btn btn-danger btn-xs"><i
                         class="fa fa-trash"></i>
                     Recusar
@@ -32,12 +32,15 @@
     {{/each}}
     </tbody>
 </table>
+
+
 <script>
     $(".btn-accept-invite, .btn-refuse-invite").on("click", function () {
         var val = $(this).attr("data-val");
         var inviteId = $(this).attr("data-id");
+        var userId = $(this).attr("user-id");
 
-        $.post("admin/invite_response", {val: val, inviteId: inviteId}, function () {
+        $.post("admin/invite_response", {val: val, inviteId: inviteId, userId: userId}, function () {
             location.reload();
         });
     });
