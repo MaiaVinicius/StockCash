@@ -1,0 +1,91 @@
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<div class="row">
+    <h1 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.84)">A competição acabou!</h1>
+    <h2 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.44)">Aqui estão os resultados:</h2>
+
+    <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12" style="margin-top: 20px;">
+        <div class="x_panel" style="text-align: center">
+            <h2 style="font-family: Montserrat; font-size: 30px; color: #F39C12">1º Lugar <i
+                    class="fa fa-trophy"></i></h2>
+            <p style="font-family: Montserrat; color: rgba(0,0,0,0.80)">{{topone.name}} ( <span id="topone">{{topone.variacao}}</span> )</p>
+            <hr>
+            <h2 style="font-family: Montserrat; font-size: 25px; color: rgba(0,0,0,0.54)">2º Lugar </h2>
+            <p style="font-family: Montserrat; color: rgba(0,0,0,0.80)">{{toptwo.name}} ( <span id="toptwo">{{toptwo.variacao}}</span> )</p>
+            <hr>
+            <h2 style="font-family: Montserrat; font-size: 25px; color: chocolate">3º Lugar </i></h2>
+            <p style="font-family: Montserrat; color: rgba(0,0,0,0.80)">{{topthree.name}} ( <span id="topthree">{{topthree.variacao}}</span> )</p>
+        </div>
+    </div>
+
+    <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+        <div class="x_panel" style="text-align: center">
+            <h2 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.64)"><i class="fa fa-percent"></i> Sua rentabilidade na competição: </h2>
+            <h1 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.84); margin-bottom: 20px;"> <span class="rentabilidadecomp">{{userinfo.variacao}}</span></h1>
+            <h2 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.64)"><i class="fa fa-money"></i> Ganho acumulado na competição: </h2>
+            <h1 style="font-family: Montserrat; text-align: center; color: rgba(0,0,0,0.84); margin-bottom: 20px;"> <span class="acumulado">{{userinfo.acumulado}}</span></h1>
+        </div>
+    </div>
+</div>
+<div class="row" style="text-align: center; margin-top: 40px;">
+<button id="exitcompetition" class="btn btn-success" style="text-align: center">Confirmar</button>
+</div>
+
+<script>
+    var rentabilidadecomp = parseFloat($(".rentabilidadecomp").html()).toFixed(2);
+    if (rentabilidadecomp < 0) {
+        $(".rentabilidadecomp").css("color", "#D91E18");
+        $(".rentabilidadecomp").html(rentabilidadecomp + "%");
+    } else {
+        $(".rentabilidadecomp").css("color", "#1abc9c");
+        $(".rentabilidadecomp").html("+ " + rentabilidadecomp + "%");
+    }
+
+    var acumulado = parseFloat($(".acumulado").html()).toFixed(2);
+
+    if (acumulado < 0) {
+        $(".acumulado").css("color", "#D91E18");
+        $(".acumulado").html("$ " + acumulado);
+    } else {
+        $(".acumulado").css("color", "#1abc9c");
+        $(".acumulado").html("$ " + "+" + acumulado);
+    }
+</script>
+
+<script>
+    var topone = parseFloat($('#topone').html()).toFixed(2);
+    if (topone < 0) {
+        $("#topone").css("color", "#D91E18");
+        $("#topone").html(topone + "%");
+    } else {
+        $("#topone").css("color", "#1abc9c");
+        $("#topone").html("+" + topone + "%");
+    }
+
+    var toptwo = parseFloat($('#toptwo').html()).toFixed(2);
+    if (toptwo < 0) {
+        $("#toptwo").css("color", "#D91E18");
+        $("#toptwo").html(toptwo + "%");
+    } else {
+        $("#toptwo").css("color", "#1abc9c");
+        $("#toptwo").html("+" + toptwo + "%");
+    }
+
+    var topthree = parseFloat($('#topthree').html()).toFixed(2);
+    if (topthree < 0) {
+        $("#topthree").css("color", "#D91E18");
+        $("#topthree").html(topthree + "%");
+    } else {
+        $("#topthree").css("color", "#1abc9c");
+        $("#topthree").html("+" + topthree + "%");
+    }
+
+    $("#exitcompetition").on("click", function () {
+        $.post("/competition/exitcompetition");
+        window.setTimeout('location.reload()', 300);
+    });
+</script>
+

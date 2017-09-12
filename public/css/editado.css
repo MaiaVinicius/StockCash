@@ -4,12 +4,17 @@
 }
 
 @font-face {
+    font-family: 'Open Sans', sans-serif;
+    src: url("https://fonts.googleapis.com/css?family=Open+Sans");
+}
+
+@font-face {
     font-family: "Montserrat Light";
     src: url("/fonts/fonts/Montserrat-Light.otf");
 }
 
 @font-face {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     src: url("/fonts/fonts/Montserrat-Regular.otf");
 }
 
@@ -48,12 +53,12 @@ body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
 }
 
 .headerhome > h1 {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     color: rgba(0, 0, 0, 0.75);
 }
 
 .headerhome > p {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     color: rgba(0, 0, 0, 0.50);
     font-size: 17px;
     margin-top: -5px;
@@ -90,12 +95,12 @@ body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
 }
 
 .homebox > h4 {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     color: rgba(0, 0, 0, 0.75);
 }
 
 .homebox > p {
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     color: rgba(0, 0, 0, 0.50);
     padding-right: 15px;
     padding-left: 15px;
@@ -109,14 +114,14 @@ body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
 .groupsearch > p {
     text-align: center;
     width: 100%;
-    font-family:;
     color: rgba(255, 0, 0, 0.38);
 }
+
 
 #search {
     width: 70%;
     height: 50px;
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     text-align: center;
     font-size: 18px;
     color: rgba(0, 0, 0, 0.71);
@@ -254,7 +259,7 @@ body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
 
 .headergroup > h1 {
     color: white;
-    font-family: "Montserrat Regular";
+    font-family: "Montserrat";
     line-height: 45px;
 }
 
@@ -278,5 +283,144 @@ body > div > div > div.col-md-3.left_col > div > div.navbar.nav_title > img {
 }
 
 
+#myInput {
+    width: 50%;
+    height: 35px;
+    font-family: "Arial";
+    text-align: center;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.61);
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.21);
+}
 
+.negative {
+    color: red;
+    background-image: url("/img/seta-valor-negativo.gif");
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: center;
+    padding-left: 10px;
+}
+
+.positive {
+    color: green;
+    background-image: url("/img/seta-valor-positivo.gif");
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: center;
+    padding-left: 10px;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #26B99A;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% {
+          transform: scale(1.0);
+          -webkit-transform: scale(1.0);
+      }
+}
+
+.infotile {
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(128, 128, 128, 0.44);
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.infotile > p {
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.teste {
+    width: 100%;
+    height: 40px;
+}
+
+.teste > p {
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-family: "Montserrat";
+    font-size: 14px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 61px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.circle > i {
+    color: white;
+    line-height: 60px;
+}
+
+
+#acceptrequest > i {
+    opacity: 0.40;
+}
+
+#acceptrequest > i:hover {
+    opacity: 1.00;
+}
+
+#denyrequest > i {
+    opacity: 0.40;
+}
+
+#denyrequest > i:hover {
+    opacity: 1.00;
+}
+
+.gold {
+
+    background-size: 90px 70px;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+
+}
+
+body {
+    font-family: "Open Sans", sans-serif !important;
+    background-color: white !important;
+}
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Stock Clash - Aprenda  Jogando</title>
+    <title>Stock Clash - Aprenda Jogando</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel='stylesheet' href='/css/bootstrap.min.css'/>
@@ -15,16 +15,17 @@
     <link rel='stylesheet' href='/css/login.css'/>
 
 
-
 </head>
 {{#if registerError}}
 
-    <div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-hidden="true" style="display: block; padding-right: 17px;">
+    <div class="modal fade bs-example-modal-sm in" tabindex="-1" role="dialog" aria-hidden="true"
+         style="display: block; padding-right: 17px;">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <a href="/" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+                    <a href="/" type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span>
                     </a>
                     <h4 class="modal-title" id="myModalLabel2"><span style="color: red;"> Erro no Registro:</span></h4>
                 </div>
@@ -91,6 +92,9 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-sm-6 col-sm-offset-3">
+                                    <a href="/forgotpassword"><p
+                                            style="font-size: 12px; text-align: center; text-decoration: underline">
+                                        Esqueci minha senha</p></a>
                                     <input type="submit" name="login-submit" id="login-submit" tabindex="4"
                                            class="form-control btn btn-login" value="ENTRAR">
                                 </div>
@@ -101,26 +105,34 @@
                     <form id="register-form" action="/login/register" method="post"
                           role="form" style="display: none;">
                         <div class="form-group">
-                            <input type="text" name="name" id="username" tabindex="1" class="form-control"
+                            <input type="text" name="name" id="nameregister" tabindex="1" class="form-control"
                                    placeholder="Nome" required value="">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="username" id="username" tabindex="1" class="form-control"
+                            <input type="text" name="username" id="usernameregister" tabindex="1" class="form-control"
                                    placeholder="Usuário" required value="">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" id="email" tabindex="1" class="form-control"
+                            <input type="email" name="email" id="emailregister" tabindex="1" class="form-control"
                                    placeholder="Endereço de Email" required value="">
                         </div>
                         <div class="form-group">
-                            <input type="password" name="password" id="password" tabindex="2"
+                            <input type="password" name="password" id="passwordregister" tabindex="2"
                                    class="form-control" required placeholder="Senha">
                         </div>
-                        <select name="college_id" id="" name="college_id" required class="form-control">
-                            {{#each colleges}}
-                                <option value="{{this.id}}">{{this.name}}</option>
-                            {{/each}}
-                        </select>
+                        <div class="form-group">
+                            <input type="password" name="confirmpw" id="confirmpw"
+                                   class="form-control" required placeholder="Confirmar senha">
+                        </div>
+                        <p id="errorname"
+                           style="font-size: 12px; text-align: center; color: red; margin-bottom: 0px; display: none;">
+                            Nome pode conter letras de a-z, A-Z e espaços. Máximo de 20 characteres.</p>
+                        <p id="errorusername"
+                           style="font-size: 12px; text-align: center; color: red; margin-bottom: 0px; display: none;">
+                            Usuário só pode conter letras de a-z. Máximo de 15 characteres.</p>
+                        <p id="errorconfirmpw"
+                           style="font-size: 12px; text-align: center; color: red; margin-bottom: 0px; display: none;">
+                            Sua senha não confere com a confirmação.</p>
                         <div class="form-group">
                             <div class="row">
                                 <br>
@@ -143,36 +155,34 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="books col-lg-offset-2">
-                <i class="fa fa-line-chart" style="font-size: 50px;"></i>
-                <div class="textbody">
-                    <p><strong>Invista como um Trader</strong></p>
-                    <p>Aprenda a operar ações em tempo real em um layout dinâmico e simples. </p>
-                </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
+            <i class="fa fa-4x fa-line-chart"></i>
+            <h2><strong>Invista como um trader</strong></h2>
+            <div style="word-wrap: break-word;
+   width: 250px; margin: 0 auto; font-size: 15px;" class="texto">
+                <p>Aprenda a operar ações em tempo real em um layout dinâmico e simples.</p>
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="books col-lg-offset-2">
-                <i class="fa fa-group" style="font-size: 50px;"></i>
-                <div class="textbody">
-                    <p><strong>Jogue com seus amigos</strong></p>
-                    <p>Crie seu grupo, entre em competições e compartilhe suas conquistas com seus contatos. </p>
-                </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
+            <i class="fa fa-4x fa-trophy"></i>
+            <h2><strong>Participe de competições</strong></h2>
+            <div style="word-wrap: break-word;
+   width: 250px; margin: 0 auto; font-size: 15px;" class="texto">
+                <p>Crie ou entre em uma competição e seja o trader com a maior rentabilidade.</p>
             </div>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <div class="books col-lg-offset-2">
-                <i class="fa fa-code" style="font-size: 50px;"></i>
-                <div class="textbody">
-                    <p><strong>Desenvolvido por:</strong></p>
-                    <a href="#"><p><i class="fa fa-user"></i> José Renato Baroni</p></a>
-                    <a href="#"><p><i class="fa fa-user"></i>Vinicius Maia</p></a>
-                </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
+            <h1 style="font-weight: 600">114</h1>
+            <h2><strong>Ações listadas</strong></h2>
+            <div style="word-wrap: break-word;
+   width: 250px; margin: 0 auto; font-size: 15px;" class="texto">
+                <p>Possuímos as principais Ações Blue Chips e as listadas na carteira da IBOV em preço e tempo real.</p>
             </div>
         </div>
+
+
     </div>
 </div>
 
@@ -187,3 +197,67 @@
 </body>
 
 </html>
+
+<script>
+    $("#confirmpw").on("keyup", function () {
+        var pass = $("#passwordregister").val();
+        var confirm = $(this).val();
+
+        if (confirm != pass) {
+            $("#errorconfirmpw").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        } else {
+            $("#errorconfirmpw").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        }
+    });
+
+    $("#nameregister").on("keyup", function () {
+        var name = $(this).val();
+
+        if (/^[A-Za-z\s]+$/.test(name)) {
+            $("#errorname").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        } else {
+            $("#errorname").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        }
+
+        if (name.length > 20) {
+            $("#errorname").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        } else {
+            $("#errorname").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        }
+    });
+
+    $("#usernameregister").on("keyup", function () {
+        var username = $(this).val();
+        var whitespace = /\s/;
+
+        if (/^[A-Za-z0-9]+$/.test(username)) {
+            $("#errorusername").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        } else {
+            $("#errorusername").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        }
+
+        if (username.length > 15) {
+            $("#errorusername").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        } else {
+            $("#errorusername").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        }
+
+        if (whitespace.test(username)) {
+            $("#errorusername").css("display", "block");
+            $("#register-submit").attr("disabled", "disabled");
+        } else {
+            $("#errorusername").css("display", "none");
+            $("#register-submit").removeAttr('disabled');
+        }
+    });
+</script>

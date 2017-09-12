@@ -1,11 +1,333 @@
 <div class="x_panel">
-    <ul class="list-group">
-        {{#each stocks}}
-            <li class="list-group-item stock" style="cursor:pointer;">
-                <a href="/stock/buy/{{this.symbol}}">{{this.symbol}}</a>
-                <span class="badge">R$ {{this.price}}</span></li>
-        {{/each}}
-    </ul>
+    <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="color: rgba(0,0,0,0.64);font-weight: 600"><span class="fa fa-cart-plus"></span> Comprar ações </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content table-responsive">
+                    <div class="groupsearch" style="margin-bottom: 15px;">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar por empresa..">
+                    </div>
+                    <hr>
+                    <table style="text-align: center; border: 1px solid rgba(0,0,0,0.05);" id="buy_stocks"
+                           class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th  style="text-align: left;"><strong>Empresa</strong></th>
+                            <th style="text-align: center;"><strong>Ação</strong></th>
+                            <th style="text-align: center;"><strong>Preço</strong></th>
+                            <th style="text-align: center;"><strong>Variação (%)</strong></th>
+                            <th style="text-align: center;"><strong>Comprar</strong></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each stocks}}
+                            <tr class="stock-row" data-symbol="{{this.symbol}}">
+                                <td style="text-align: left">
+                                    <div style="width: 4px; height: 20px; background-color: #34495e; margin-right: 5px; display: inline-block; top: 4px; position: relative"></div>{{this.stock}}
+                                </td>
+                                <td id="symbol" data-id="{{this.symbol}}"><strong>{{this.symbol}}</strong></td>
+                                <td>$ <strong class="stock-price">{{this.price}}</strong></td>
+                                <td>
+                                    <span class="variation">
+                                        <span class="variation-icon"></span>
+                                        <span class="stock-variation">{{this.variation}}</span>
+                                    </span>
+                                </td>
+                                <td><a class="requestOrder" data-toggle="modal" data-symbol="{{this.symbol}}"
+                                       data-price="{{this.price}}"
+                                       href="#modal-request-order"><i
+                                        style="font-size: 20px; color: #1BBC9B" class="fa fa-cart-plus"></i></a></td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+
+                    <!-- modal -->
+                    <div id="modal-request-order" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <form class="form-request-stock stock-row">
+                                    <input name="groupId" type="hidden" id="group_id">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Confirmar Ordem</h4>
+                                    </div>
+                                    <div class="modal-body" style="text-align: center">
+                                        <p>Ação: <strong> <span class="stock-symbol"></span> </strong></p>
+                                        <p>Preço: $
+                                            <strong>
+                                                <span class="stock-price"></span>
+                                            </strong>
+                                        </p>
+                                        <p>Quantidade: <input min="0" type="number" id="stockqtd"
+                                                              style="width: 45px; height: 20px" type="text"></p>
+                                        <p>Total da Ordem: <strong>$ <span id="totalorder"></span></strong></p>
+                                        <p class="warningqtd" style="color: red; display: none">Você não possui saldo
+                                            para essa ordem!</p>
+                                        <div class="loading" style="display: none">
+                                            <p style="color:#26B99A">Realizando ordem...</p>
+                                            <div class="spinner">
+                                                <div class="double-bounce1"></div>
+                                                <div class="double-bounce2"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-send-order-request"
+                                        >Confirmar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-sm-12 col-xs-12">
+
+            <div class="infotile count" data-balance="{{myBalance}}">
+                <div class="circle" style="background-color: #34495e">
+                    <i class="fa fa-2x fa-bank"></i>
+                </div>
+                <p style="">$ {{myBalance}}</p>
+                <div class="teste" style="background-color: #34495e">
+                    <p>Disponível para uso</p>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="text-align: center; float: none; color: rgba(0,0,0,0.64);font-weight: 600"> Maiores variações</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="topfivebuy">
+                        <table style="text-align: center; border: 1px solid rgba(0,0,0,0.05);" id="buy_stocks"
+                               class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center;">Ação</th>
+                                <th style="text-align: center;">Variação (%)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each topfive}}
+                                <tr class="stock-row" data-symbol="{{this.symbol}}">
+                                    <td><strong>{{this.symbol}}</strong></td>
+                                    <td>
+                                    <span class="variation">
+                                        <span class="variation-icon"></span>
+                                        <span class="stock-variation">{{this.variation}}</span>
+                                    </span>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style="text-align: center; float: none; color: rgba(0,0,0,0.64);font-weight: 600"> Menores variações</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table style="text-align: center; border: 1px solid rgba(0,0,0,0.05);" id="buy_stocks"
+                           class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">Ação</th>
+                            <th style="text-align: center;">Variação (%)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each leastfive}}
+                            <tr class="stock-row" data-symbol="{{this.symbol}}">
+                                <td><strong>{{this.symbol}}</strong></td>
+                                <td>
+                                    <span class="variation">
+                                        <span class="variation-icon"></span>
+                                        <span class="stock-variation">{{this.variation}}</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
 
 
+    </div>
 </div>
+
+<script type="text/javascript">
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("buy_stocks");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    var $stockPrice = $('.stock-row');
+
+    var toFixed = function (n) {
+                if (!n) {
+                    return false;
+                }
+                n = n.toString();
+                var s = n.split('.');
+
+                if (!s[1]) {
+                    return n;
+                } else {
+                    if (s[1].length > 1) {
+                        return s[0] + "." + s[1].substr(0, 2);
+                    } else {
+                        return s[0] + "." + s[1] + "0";
+                    }
+                }
+            }
+    ;
+    $.each($stockPrice, function () {
+        var $stock = $(this),
+                $variation = $stock.find('.variation'),
+                variation = parseFloat(toFixed($stock.find('.stock-variation').html()));
+
+        if (variation < 0) {
+            $variation.addClass('negative');
+        } else {
+            $variation.addClass('positive');
+        }
+        $variation.html(variation);
+    });
+
+    var refreshStockPrices = function () {
+        $.get('/stocks/getStockPricesBuy', function (data) {
+            $.each(data.stocks, function () {
+
+                var $stocks = $stockPrice.filter("[data-symbol='" + this.symbol + "']");
+                var variation = (this.variation).toFixed(2);
+                var price = (this.price).toFixed(2);
+
+                $.each($stocks, function () {
+                    var $variation = $('.variation', this);
+                    var $price = $('.stock-price', this);
+
+                    $variation.html(variation + "%");
+                    $price.html(price);
+
+                    if (variation < 0) {
+                        $variation.addClass('negative');
+                    } else {
+                        $variation.addClass('positive');
+                    }
+
+                });
+            });
+        });
+    }, refreshInterval = 3000; //3 segundos;
+
+    setInterval(refreshStockPrices, refreshInterval);
+</script>
+
+<script>
+    $(document).on("click", ".requestOrder", function () {
+        var stockSymbol = $(this).data('symbol');
+        var stockPrice = $(this).data('price');
+        var myBalance = $(".count").data("balance");
+
+        $(".form-request-stock").attr("data-symbol", stockSymbol);
+
+        $(".form-request-stock .stock-symbol").text(stockSymbol);
+        $(".form-request-stock .stock-price").text(stockPrice);
+
+        $('#stockqtd').change(function () {
+
+            var StockPriceNow = $(".form-request-stock .stock-price").html();
+            var totalOrder = this.value * StockPriceNow;
+            $(".form-request-stock #totalorder").text(totalOrder.toFixed(2));
+
+            if (totalOrder <= myBalance) {
+                $(".warningqtd").css("display", "none");
+            } else {
+                $(".warningqtd").css("display", "block");
+            }
+
+        });
+
+        function toogleDisabled($selector) {
+            if ($selector.attr("disabled")) {
+                $selector.attr("disabled", false);
+            } else {
+                $selector.attr("disabled", true);
+            }
+        }
+
+        $(".btn-send-order-request").on("click", function () {
+            var $btn = $(this);
+            var stockQuantd = $("#stockqtd").val();
+            var input = $("#stockqtd").val();
+            var StockPriceNow = $(".form-request-stock .stock-price").html();
+            var totalOrder = input * StockPriceNow;
+
+            toogleDisabled($btn);
+
+            if (totalOrder <= myBalance) {
+                $.post({
+                    url: "/stocks/buy",
+                    data: {stockQuantd: stockQuantd, stockSymbol: stockSymbol},
+                    success: function () {
+                        setTimeout(function () {
+                            toogleDisabled($btn)
+                        }, 1000);
+                    }
+                });
+                $(".loading").css("display", "block");
+                setTimeout(window.location.reload.bind(window.location), 1000);
+
+            }
+            else {
+                $(".warningqtd").css("display", "block");
+            }
+        })
+
+    });
+</script>
+
+
+
+
+
+

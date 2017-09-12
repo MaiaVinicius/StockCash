@@ -1,0 +1,61 @@
+<div class="x_panel">
+
+    <div class="x_title">
+        <h2 style="color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-th-list"></span> Operações</h2>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="x_content table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th style="text-align: left;">Tipo</th>
+                <th style="text-align: left;">Ação</th>
+                <th style="text-align: center;">Quantidade</th>
+                <th style="text-align: center;">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each operation}}
+                <tr>
+                    <td><strong>{{this.date}}</strong></td>
+                    <td class="type">{{this.buy_sell}}</td>
+                    <td><strong>{{this.stock_symbol}}</strong></td>
+                    <td style="text-align: center">{{this.qtd}}</td>
+                    <td data-total="{{this.total}}" class="total" style="text-align: center">{{this.total}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    $(".type").each(function () {
+        var tipo = $(this).html();
+
+        if (tipo > 0) {
+            $(this).html("Venda");
+            $(this).css("color","green");
+        } else {
+            $(this).html("Compra");
+            $(this).css("color","red");
+        }
+    });
+
+    $(".total").each(function () {
+        var value = $(this).data("total").toFixed(2);
+        var value2 = value.toString();
+
+        if (value > 0) {
+            $(this).css("color", "green");
+            $(this).html("$ " + value2);
+        } else {
+            $(this).css("color", "red");
+            $(this).html("$ " + value2);
+        }
+    });
+
+</script>

@@ -1,20 +1,20 @@
 var request = require("request");
-var interval = 60000;//ms
+var interval = 120000;//ms
 var Stock = require("../models/Stock");
+var CronJob = require('cron').CronJob;
 var getEndpointUrl = function (stockSymbol) {
     return "http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stockSymbol + "&interval=1min&outputsize=compact&apikey=CL85UTRJC3TXZPJK";
 };
 Stock.getAll(function (stocks) {
-    var exec = function () {
-
-        for (var i = 0; i < stocks.length; i++) {
-            var stock = stocks[i].symbol;
-
-            request({
-                url: getEndpointUrl(stock),
-                json: true
-            }, function (err, response, body) {
-                if(body){
+    var make = function (stock) {
+        //mas só ta indo uma nn .. ela ta processando. mas a resposta nao vem imediata
+        console.log("...")
+        request({
+            url: getEndpointUrl(stock),
+            json: true
+        }, function (err, response, body) {
+            if (body) {
+                if (body["Meta Data"]) {
                     var timeSeries1MinuteInterval = body["Time Series (1min)"];
                     var stock = body["Meta Data"]["2. Symbol"];
                     console.log("GOT RESPONSE FOR " + stock);
@@ -28,14 +28,28 @@ Stock.getAll(function (stocks) {
 
                             Stock.addPrice(stock, price);
                         } else {
-                            return false;
+                            return true;
                         }
                     });
+                } else {
+                    console.log(body);
                 }
-            });
-        }
+            }
+        });
+    };
+    var exec = function () {
+        var t = 0;
+
+        for (var i = 0; i < stocks.length; i++) {
+            var stock = stocks[i].symbol;
+            t += 300;//intervalo entre os requests disparados em, uma atualrlizxarclxaorlxlrl
+
+            setTimeout(make.bind(null, stock), t);
+
+        } //end loop é, ainda não
     };
     exec();
     setInterval(exec, interval);
 });
 
+// agora da pra diminuir o intervalo

@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/User");
 var College = require("../models/College");
-var Group = require("../models/Group");
 
 router.get("/", function (req, res) {
     var get = req.query;
@@ -28,13 +27,7 @@ router.post("/", function (req, res) {
         if (result.length > 0) {
             //usuario existe
             req.session.user = result[0];
-            Group.userHasGroup(req.session.user.id, function (resultgroup) {
-                if (result.length > 0) {
-                    req.session.group = resultgroup[0];
-
-                    res.redirect("/");
-                }
-            });
+            res.redirect("/");
         } else {
             //usuario nao existe
             res.redirect("/login?loginError=1");
@@ -49,9 +42,33 @@ router.post("/register", function (req, res) {
         if (result.length > 0) {
             res.redirect("/login?registerError=1");
         } else {
-            User.new(postData);
-            req.session.user = result[0];
-            res.redirect("/");
+            var username = postData.username;
+            var name = postData.name;
+            var whitespace = /\s/;
+
+            if (/^[A-Za-z\s]+$/.test(name)) {
+                if (name.length < 20) {
+                    if (/^[A-Za-z0-9]+$/.test(username)) {
+                        if (username.length < 15) {
+                            if (whitespace.test(username)) {
+                                res.json("error username3")
+                            } else {
+                                User.new(postData);
+                                req.session.user = result[0];
+                                res.redirect("/");
+                            }
+                        } else {
+                            res.json("error username2")
+                        }
+                    } else {
+                        res.json("error username")
+                    }
+                } else {
+                    res.json("error name2")
+                }
+            } else {
+                res.json("error name");
+            }
         }
     });
 });

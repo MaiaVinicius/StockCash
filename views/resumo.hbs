@@ -1,301 +1,428 @@
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
 
-    <div class="">
+<div class="">
 
-        <!--Paineis de cima-->
-        <div class="row top_tiles">
-
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon" style="margin-right: 20px;margin-top: 10px;"><i class="fa fa-calendar"></i></div>
-                    <div class="count" style="height: 60px;margin-left: 10px;line-height: 2.85;font-size:25px;">158</div>
-                    <h3>Dias Restantes</h3>
-                    <p>Para o término da competição</p>
+    <!--Paineis de cima-->
+    <div class="row" style="margin-bottom: 15px">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="animated flipInX infotile">
+                <div class="circle" style="background-color: #34495e"
+                >
+                    <i class="fa fa-2x fa-bar-chart"></i>
+                </div>
+                <p style="font-size: 15px;padding-top: 13px;">
+                    <a href="/competition"><small>+ Participar de competição</small></a>
+                    </p>
+                <div class="teste" style="background-color: #34495e">
+                    <p>Rentabilidade na competição</p>
                 </div>
             </div>
-
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon" style="margin-right: 20px;margin-top: 10px;"><i class="fa fa-line-chart"></i></div>
-                    <div class="count" style="height: 60px;margin-left: 10px; color:#1eac90;line-height: 2.85;font-size:25px;">+179,0%</div>
-                    <h3>Rentabilidade</h3>
-                    <p>Acumulada na competição</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="animated flipInX infotile">
+                <div class="circle" style="background-color: #34495e">
+                    <i class="fa fa-2x fa-line-chart"></i>
+                </div>
+                <p><span class="rentabilidade">{{rentabilidade}}</span></p>
+                <div class="teste" style="background-color: #34495e">
+                    <p>Rentabilidade Acumulada</p>
                 </div>
             </div>
-
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon" style="margin-right: 20px;margin-top: 10px;"><i class="fa fa-plus"></i></div>
-                    <div class="count" style="height: 60px;margin-left: 10px; color:#1eac90;line-height: 2.85;font-size:25px;">$ +950,00</div>
-                    <h3>Ganho Acumulado</h3>
-                    <p>Lucro durante a competição</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="animated flipInX infotile">
+                <div class="circle" style="background-color: #34495e">
+                    <i class="fa fa-2x fa-usd"></i>
+                </div>
+                <p style="color: #16a085;"><span class="ganhoacumulado"></span></p>
+                <div class="teste" style="background-color: #34495e">
+                    <p>Ganho Acumulado</p>
                 </div>
             </div>
-
-            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="tile-stats">
-                    <div class="icon" style="margin-right: 20px;margin-top: 10px;"><i class="fa fa-bank"></i></div>
-                    <div class="count" style="height: 60px;margin-left: 10px;line-height: 2.85;font-size:25px;">$ 1.000,00</div>
-                    <h3>Banco</h3>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <div class="animated flipInX infotile">
+                <div class="circle" style="background-color: #34495e">
+                    <i class="fa fa-2x fa-bank"></i>
+                </div>
+                <p style=""><span class="banco" data-balance="{{saldoTotal}}"></span>$ {{myBalance}}</p>
+                <div class="teste" style="background-color: #34495e">
                     <p>Disponível para uso</p>
                 </div>
             </div>
-
         </div>
 
-
-        <div class="row">
-
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                <!--Painel grafico-->
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2><span class="fa-sm fa-bar-chart"></span> Rentabilidade Mensal</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <iframe class="chartjs-hidden-iframe" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;">
-                        </iframe>
-                        <canvas id="lineChart" width="703" height="300px" style="width: 703px; height: 351px;"></canvas>
-                    </div>
-                </div>
-                <!--Painel stocks-->
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2><span class="fa fa-bars"></span> Ações na carteira</h2>
-                        <div class="clearfix"></div>
-                        <div class="x_content" style="margin-top: 20px;">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>Ação</th>
-                                    <th>Qtd</th>
-                                    <th>Preço na Compra</th>
-                                    <th>Preço Atual</th>
-                                    <th>Variação</th>
-                                    <th>Vender</th>
-                                </tr>
-                                </thead>
-
-                                <tbody class="text-center">
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>150</td>
-                                    <td>$ 10,00</td>
-                                    <td>$ 11,00</td>
-                                    <td>% 1.00%</td>
-                                    <td><button class="btn btn-danger btn-xs"><icon class="fa fa-usd"></icon></button></td>
-                                </tr>
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!--Painel ranking-->
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2><span class="fa fa-trophy"
-
-                        ></span> Ranking de Grupos</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-
-                        <ul class="list-unstyled top_profiles scroll-view">
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title">Nome do Grupo</a>
-                                    <p><strong>+32%</strong></p>
-                                    <p> <small>Rentabilidade mensal</small>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title">Nome do Grupo</a>
-                                    <p><strong>+32%</strong></p>
-                                    <p> <small>Rentabilidade mensal</small>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title">Nome do Grupo</a>
-                                    <p><strong>+32%</strong></p>
-                                    <p> <small>Rentabilidade mensal</small>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title">Nome do Grupo</a>
-                                    <p><strong>+32%</strong></p>
-                                    <p> <small>Rentabilidade mensal</small>
-                                    </p>
-                                </div>
-                            </li>
-
-                            <li class="media event">
-                                <a class="pull-left border-aero profile_thumb">
-                                    <i class="fa fa-user aero"></i>
-                                </a>
-                                <div class="media-body">
-                                    <a class="title">Nome do Grupo</a>
-                                    <p><strong>+32%</strong></p>
-                                    <p> <small>Rentabilidade mensal</small>
-                                    </p>
-                                </div>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-            <!--Painel ranking stock-->
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2><span class="fa fa-star"></span> Ações da Semana</h2>
-                        <div class="clearfix"></div>
-                        <div class="x_content" style="margin-top: 20px; padding-bottom: 0px;">
-
-                            <table class="table table-striped" style="margin-bottom: 2px;">
-                                <thead>
-                                <tr>
-                                    <th>Ação</th>
-                                    <th>Rentabilidade</th>
-                                    <th>Preço Atual</th>
-                                </tr>
-                                </thead>
-
-                                <tbody class="text-center text-center">
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-                                <tr>
-                                    <td>ABEV3</td>
-                                    <td>10%</td>
-                                    <td>$ 10,00</td>
-                                </tr>
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
     </div>
-    <!-- /page content -->
 
-    <!-- footer content -->
-    <!-- /footer content -->
+
+    <div class="row">
+
+        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+            <!--Painel grafico-->
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style=" color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-line-chart"></span> Gráficos
+                        <small>Digite o símbolo da ação e aperte ENTER.</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 500px">
+                        <iframe class="embed-responsive-item"
+                                src="https://ssltvc.forexprostools.com/?pair_ID=941612&height=500&width=2000&interval=300&plotStyle=candle&domain_ID=30&lang_ID=12&timezone_ID=10"></iframe>
+                    </div>
+                </div>
+            </div>
+            <!--Painel stocks-->
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style=" color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-cart-plus"></span> Vender ações </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content table-responsive">
+                    <table style="text-align: center; border: 1px solid rgba(0,0,0,0.05);" id="buy_stocks"
+                           class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align: left;">Ação</th>
+                            <th style="text-align: center;">Qtd</th>
+                            <th style="text-align: center;">Preço</th>
+                            <th style="text-align: center;">Variação</th>
+                            <th style="text-align: center;">Vender</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each stockswallet}}
+                            <tr class="stock-row" data-symbol="{{this.stock_symbol}}">
+                                <td style="text-align: left" id="symbol"
+                                    data-id="{{this.stock_symbol}}">
+                                    <div style="width: 4px; height: 20px; background-color: #34495e; margin-right: 5px; display: inline-block; top: 4px; position: relative"></div>{{this.stock_symbol}}
+                                </td>
+                                <td id="stock_qtd" data-qtd="{{this.quantidade}}">{{this.quantidade}}</td>
+                                <td>$ <strong class="stock-price">{{this.price}}</strong></td>
+                                <td>
+                                    <span class="variation">
+                                        <span class="variation-icon"></span>
+                                        <span class="stock-variation">{{this.variation}}</span>
+                                    </span>
+                                </td>
+                                <td><a class="requestOrderSell" data-qtd="{{this.quantidade}}" data-toggle="modal"
+                                       data-symbol="{{this.stock_symbol}}"
+                                       data-price="{{this.price}}"
+                                       href="#modal-request-order"><i
+                                        style="font-size: 20px;color: #C0392B" class="fa fa-cart-arrow-down"></i></a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+
+                    <!-- modal -->
+                    <div id="modal-request-order" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <form class="form-request-stock stock-row">
+                                    <input name="groupId" type="hidden" id="group_id">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Confirmar Ordem</h4>
+                                    </div>
+                                    <div class="modal-body" style="text-align: center">
+                                        <p>Ação: <strong> <span class="stock-symbol"></span> </strong></p>
+                                        <p>Preço: $
+                                            <strong>
+                                                <span class="stock-price"></span>
+                                            </strong>
+                                        </p>
+                                        <p>Quantidade: <input min="0" max="" type="number" id="stockqtd"
+                                                              style="width: 55px; height: 20px" type="text"></p>
+                                        <p class="warningqtd" style="color: red; display: none">Você não possui essa
+                                            quantidade de ações!</p>
+                                        <p>Total da Ordem: <strong>$ <span id="totalorder"></span></strong></p>
+                                        <div class="loading" style="display: none">
+                                            <p style="color: #26B99A">Realizando ordem...</p>
+                                            <div class="spinner">
+                                                <div class="double-bounce1"></div>
+                                                <div class="double-bounce2"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar
+                                        </button>
+                                        <button type="button" class="btn btn-success btn-send-order-request">Confirmar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--Painel ranking-->
+        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2 style=" color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-trophy"></span> Competição
+                        <small>Top 10</small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        <a href="/competition"><p style="text-align: center">+ Participar de competição</p></a>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- /page content -->
+
+<!-- footer content -->
+<!-- /footer content -->
+
+<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+<script>
+    var $stockPrice = $('.stock-row');
+
+    var toFixed = function (n) {
+                if (!n) {
+                    return false;
+                }
+                n = n.toString();
+                var s = n.split('.');
+
+                if (!s[1]) {
+                    return n;
+                } else {
+                    if (s[1].length > 1) {
+                        return s[0] + "." + s[1].substr(0, 2);
+                    } else {
+                        return s[0] + "." + s[1] + "0";
+                    }
+                }
+            }
+    ;
+
+    $.each($stockPrice, function () {
+        var $stock = $(this),
+                $variation = $stock.find('.variation'),
+                variation = parseFloat(toFixed($stock.find('.stock-variation').html()));
+
+        if (variation < 0) {
+            $variation.addClass('negative');
+        } else {
+            $variation.addClass('positive');
+        }
+        $variation.html(variation);
+    });
+
+    var refreshStockPrices = function () {
+        $.get('/stocks/getStockPriceSell', function (data) {
+            $.each(data.stocks, function () {
+
+                var $stocks = $stockPrice.filter("[data-symbol='" + this.stock_symbol + "']");
+                var variation = (this.variation).toFixed(2);
+                var price = (this.price).toFixed(2);
+
+                $.each($stocks, function () {
+                    var $variation = $('.variation', this);
+                    var $price = $('.stock-price', this);
+
+                    $variation.html(variation + "%");
+                    $price.html(price);
+
+                    if (variation < 0) {
+                        $variation.addClass('negative');
+                    } else {
+                        $variation.addClass('positive');
+                    }
+
+                });
+            });
+        });
+    }, refreshInterval = 3000; //3 segundos;
+
+    setInterval(refreshStockPrices, refreshInterval);
+</script>
+
+<script>
+    $(".stock-row").each(function () {
+        var quantidade = $("#stock_qtd", this).data("qtd");
+        if (quantidade <= 0) {
+            $(this).css("display", "none");
+        }
+    });
+
+
+    $(document).on("click", ".requestOrderSell", function () {
+        var stockSymbol = $(this).data('symbol');
+        var stockPrice = $(this).data('price');
+        var stockWalletQTD = $(this).data("qtd");
+
+
+        $(".form-request-stock").attr("data-symbol", stockSymbol);
+
+        $(".form-request-stock .stock-symbol").text(stockSymbol);
+        $(".form-request-stock .stock-price").text(stockPrice);
+        $(".form-request-stock #stockqtd").attr("max", stockWalletQTD);
+
+        $('#stockqtd').change(function () {
+            var stockQuantd = $("#stockqtd").val();
+            var StockPriceNow = $(".form-request-stock .stock-price").html();
+            var totalOrder = this.value * StockPriceNow;
+            $(".form-request-stock #totalorder").text(totalOrder.toFixed(2));
+
+            if (stockQuantd > stockWalletQTD) {
+                $(".warningqtd").css("display", "block");
+            } else {
+                $(".warningqtd").css("display", "none");
+            }
+
+        });
+
+        $(".btn-send-order-request").on("click", function () {
+            var $sellButton = $(this);
+
+            var stockQuantd = $("#stockqtd").val();
+            if (stockQuantd > stockWalletQTD) {
+                $(".warningqtd").css("display", "block");
+            }
+            else {
+                $sellButton.attr("disabled", true);
+                $.post({
+                    url: "/stocks/sell",
+                    data: {stockQuantd: stockQuantd, stockSymbol: stockSymbol},
+                    success: function () {
+                        setTimeout(function () {
+                            $sellButton.attr('disabled', false);
+                        }, 1000);
+                    }
+                });
+                $(".loading").css("display", "block");
+                setTimeout(window.location.reload.bind(window.location), 1000);
+            }
+        })
+    });
+</script>
+
+<script>
+    var rentabilidade = $(".rentabilidade").html();
+    if (rentabilidade < 0) {
+        $(".rentabilidade").css("color", "#D91E18");
+        $(".rentabilidade").html(rentabilidade + "%");
+    } else {
+        $(".rentabilidade").css("color", "#1abc9c");
+        $(".rentabilidade").html("+ " + rentabilidade + "%");
+    }
+
+    var rentabilidadecomp = parseFloat($(".rentabilidadecomp").html()).toFixed(2);
+    if (rentabilidadecomp < 0) {
+        $(".rentabilidadecomp").css("color", "#D91E18");
+        $(".rentabilidadecomp").html(rentabilidadecomp + "%");
+    } else {
+        $(".rentabilidadecomp").css("color", "#1abc9c");
+        $(".rentabilidadecomp").html("+ " + rentabilidadecomp + "%");
+    }
+
+    var banco = $(".banco").data("balance");
+    var ganhoAcumulado = banco - 50000;
+
+    if (ganhoAcumulado < 0) {
+        $(".ganhoacumulado").css("color", "#D91E18");
+        $(".ganhoacumulado").html("$ " + ganhoAcumulado.toFixed(2));
+    } else {
+        $(".ganhoacumulado").css("color", "#1abc9c");
+        $(".ganhoacumulado").html("$ " + "+" + ganhoAcumulado.toFixed(2));
+    }
+
+</script>
+
+
+<script>
+    var $rankrow = $(".rankrow");
+    var nowUserId = $("#rankinfo").data("id");
+    $.each($rankrow, function (i) {
+        $("td:first", this).html(i + 1);
+        var ranktd = $(this).find("#ranktd");
+        var acumulado = $(this).find("#acumulado");
+        var acumuladoval = parseFloat(acumulado.html()).toFixed(2);
+        var variacao = $(this).find("#variacao");
+        var variacaoval = parseFloat(variacao.html()).toFixed(2);
+        var userId = $(ranktd).data("id");
+        var rank = parseFloat($(ranktd).html());
+
+        if (rank === 1) {
+            $(ranktd).html("<span class=\"label label-warning\">OURO</span>")
+        }
+
+        if (rank === 2) {
+            $(ranktd).html("<span class=\"label label-warning\" style=\"background-color: #A8A8A8\">PRATA</span>")
+        }
+
+        if (rank === 3) {
+            $(ranktd).html("<span class=\"label label-warning\" style=\"background-color: #965A38\">BRONZE</span>")
+        }
+
+        if (rank > 3) {
+            $(ranktd).html(rank + "º")
+        }
+
+        if (userId === nowUserId) {
+            $("#rankinfo").html(rank + "º")
+        }
+
+        acumulado.html(acumuladoval);
+
+        if (acumuladoval > 0) {
+            acumulado.html("$ +" + acumuladoval);
+            acumulado.css("color", "green");
+        } else {
+            acumulado.html("$ " + acumuladoval);
+            acumulado.css("color", "red");
+        }
+
+        if (variacaoval > 0) {
+            variacao.html("<i class='fa fa-caret-up'></i> " + variacaoval + " %");
+            variacao.css("color", "green");
+        } else {
+            variacao.html("<i class='fa fa-caret-down'></i> " + variacaoval + " %");
+            variacao.css("color", "red");
+        }
+
+        var acumuladoinfo = parseFloat($("#acumuladoinfo").html()).toFixed(2);
+        if (acumuladoinfo > 0) {
+            $("#acumuladoinfo").html("$ +" + acumuladoinfo);
+            $("#acumuladoinfo").css("color", "green");
+        }
+        if (acumuladoinfo < 0) {
+            $("#acumuladoinfo").html("$ -" + acumuladoinfo);
+            $("#acumuladoinfo").css("color", "red");
+        }
+
+        var variacaoinfo = parseFloat($("#acumuladovariacao").html()).toFixed(2);
+
+        if (variacaoinfo > 0) {
+            $("#acumuladovariacao").html("<i class='fa fa-caret-up'></i> " + variacaoval + " %");
+            $("#acumuladovariacao").css("color", "green");
+        }
+    });
+</script>

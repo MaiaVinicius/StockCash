@@ -1,0 +1,235 @@
+<div class="x_panel">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2 style="color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-cart-plus"></span> Vender ações </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content table-responsive">
+                <table style="text-align: center; border: 1px solid rgba(0,0,0,0.05);" id="buy_stocks"
+                       class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th style="text-align: left;">Ação</th>
+                        <th style="text-align: center;">Qtd</th>
+                        <th style="text-align: center;">Preço</th>
+                        <th style="text-align: center;">Variação</th>
+                        <th style="text-align: center;">Vender</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each stockswallet}}
+                        <tr class="stock-row" data-symbol="{{this.stock_symbol}}">
+                            <td style="text-align: left" id="symbol"
+                                data-id="{{this.stock_symbol}}"><div style="width: 4px; height: 20px; background-color: #34495e; margin-right: 5px; display: inline-block; top: 4px; position: relative"></div>{{this.stock_symbol}}</td>
+                            <td id="stock_qtd" data-qtd="{{this.quantidade}}">{{this.quantidade}}</td>
+                            <td>$ <strong class="stock-price">{{this.price}}</strong></td>
+                            <td>
+                                    <span class="variation">
+                                        <span class="variation-icon"></span>
+                                        <span class="stock-variation">{{this.variation}}</span>
+                                    </span>
+                            </td>
+                            <td><a class="requestOrderSell" data-qtd="{{this.quantidade}}" data-toggle="modal"
+                                   data-symbol="{{this.stock_symbol}}"
+                                   data-price="{{this.price}}"
+                                   href="#modal-request-order"><i
+                                    style="font-size: 20px;color: #C0392B" class="fa fa-cart-arrow-down"></i></a></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+
+                <!-- modal -->
+                <div id="modal-request-order" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <form class="form-request-stock stock-row">
+                                <input name="groupId" type="hidden" id="group_id">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirmar Ordem</h4>
+                                </div>
+                                <div class="modal-body" style="text-align: center">
+                                    <p>Ação: <strong> <span class="stock-symbol"></span> </strong></p>
+                                    <p>Preço: $
+                                        <strong>
+                                            <span class="stock-price"></span>
+                                        </strong>
+                                    </p>
+                                    <p>Quantidade: <input min="0" max="" type="number" id="stockqtd"
+                                                          style="width: 55px; height: 20px" type="text"></p>
+                                    <p class="warningqtd" style="color: red; display: none">Você não possui essa
+                                        quantidade de ações!</p>
+                                    <p>Total da Ordem: <strong>$ <span id="totalorder"></span></strong></p>
+                                    <div class="loading" style="display: none">
+                                        <p style="#26B99A">Realizando ordem...</p>
+                                        <div class="spinner">
+                                            <div class="double-bounce1"></div>
+                                            <div class="double-bounce2"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-send-order-request">Confirmar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12 col-xs-12">
+
+        <div class="infotile count" data-balance="{{myBalance}}">
+            <div class="circle" style="background-color: #34495e">
+                <i class="fa fa-2x fa-bank"></i>
+            </div>
+            <p style="">$ {{myBalance}}</p>
+            <div class="teste" style="background-color: #34495e">
+                <p>Disponível para uso</p>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+    var $stockPrice = $('.stock-row');
+
+    var toFixed = function (n) {
+                if (!n) {
+                    return false;
+                }
+                n = n.toString();
+                var s = n.split('.');
+
+                if (!s[1]) {
+                    return n;
+                } else {
+                    if (s[1].length > 1) {
+                        return s[0] + "." + s[1].substr(0, 2);
+                    } else {
+                        return s[0] + "." + s[1] + "0";
+                    }
+                }
+            }
+    ;
+
+    $.each($stockPrice, function () {
+        var $stock = $(this),
+                $variation = $stock.find('.variation'),
+                variation = parseFloat(toFixed($stock.find('.stock-variation').html()));
+
+        if (variation < 0) {
+            $variation.addClass('negative');
+        } else {
+            $variation.addClass('positive');
+        }
+        $variation.html(variation);
+    });
+
+    var refreshStockPrices = function () {
+        $.get('/stocks/getStockPriceSell', function (data) {
+            $.each(data.stocks, function () {
+
+                var $stocks = $stockPrice.filter("[data-symbol='" + this.stock_symbol + "']");
+                var variation = (this.variation).toFixed(2);
+                var price = (this.price).toFixed(2);
+
+                $.each($stocks, function () {
+                    var $variation = $('.variation', this);
+                    var $price = $('.stock-price', this);
+
+                    $variation.html(variation + "%");
+                    $price.html(price);
+
+                    if (variation < 0) {
+                        $variation.addClass('negative');
+                    } else {
+                        $variation.addClass('positive');
+                    }
+
+                });
+            });
+        });
+    }, refreshInterval = 3000; //3 segundos;
+
+    setInterval(refreshStockPrices, refreshInterval);
+</script>
+
+<script>
+    function toogleDisabled($selector) {
+        console.log($selector.attr("disabled"))
+        if($selector.attr("disabled")){
+            $selector.attr("disabled", false);
+        }else{
+            $selector.attr("disabled", true);
+        }
+    }
+    $(".stock-row").each(function () {
+        var quantidade = $("#stock_qtd", this).data("qtd");
+        if (quantidade <= 0) {
+            $(this).css("display", "none");
+        }
+    });
+
+
+    $(document).on("click", ".requestOrderSell", function () {
+        var stockSymbol = $(this).data('symbol');
+        var stockPrice = $(this).data('price');
+        var stockWalletQTD = $(this).data("qtd");
+
+
+        $(".form-request-stock").attr("data-symbol", stockSymbol);
+
+        $(".form-request-stock .stock-symbol").text(stockSymbol);
+        $(".form-request-stock .stock-price").text(stockPrice);
+        $(".form-request-stock #stockqtd").attr("max", stockWalletQTD);
+
+        $('#stockqtd').change(function () {
+            var stockQuantd = $("#stockqtd").val();
+            var StockPriceNow = $(".form-request-stock .stock-price").html();
+            var totalOrder = this.value * StockPriceNow;
+            $(".form-request-stock #totalorder").text(totalOrder.toFixed(2));
+
+            if (stockQuantd > stockWalletQTD) {
+                $(".warningqtd").css("display", "block");
+            } else {
+                $(".warningqtd").css("display", "none");
+            }
+
+        });
+
+
+
+        $(".btn-send-order-request").on("click", function () {
+            var stockQuantd = $("#stockqtd").val();
+            var $btn = $(this);
+            toogleDisabled($btn);
+            if (stockQuantd > stockWalletQTD) {
+                $(".warningqtd").css("display", "block");
+            }
+            else {
+                $.post({url:"/stocks/sell", data:{stockQuantd: stockQuantd, stockSymbol: stockSymbol},success:function () {
+                    setTimeout(function () {
+                        toogleDisabled($btn)
+                    }, 1000);
+                }});
+                $(".loading").css("display", "block");
+                setTimeout(window.location.reload.bind(window.location), 1000);
+            }
+        })
+    });
+</script>

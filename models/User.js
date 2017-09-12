@@ -15,8 +15,8 @@ module.exports.getAll = function (cb, loggedUser) {
 };
 
 module.exports.new = function (data) {
-    connection.query("INSERT INTO users (name,username,email,password,college_id)" +
-        "VALUES (?,?,?,md5(?),?)", [data.name, data.username, data.email, data.password, data.college_id], function (err, result) {
+    connection.query("INSERT INTO users (name,username,email,password)" +
+        "VALUES (?,?,?,?)", [data.name, data.username, data.email, data.password], function (err, result) {
     });
 
 };

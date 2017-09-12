@@ -3,23 +3,21 @@ var router = express.Router();
 var isAuth = require("../helpers/isAuth");
 
 
-var index = require('./index');
-var competitions = require('./competition');
-var groups = require('./groups');
 var dashboard = require('./dashboard');
 var login = require ("./login");
 var logout = require("./logout");
-var public = require("./public");
 var stocks = require("./stocks");
+var reports = require("./reports");
+var competition = require("./competition");
+var tutorial = require("./tutorial");
 
-router.use('/', index);
-router.use('/competitions', isAuth, competitions);
-router.use('/groups', isAuth, groups);
-router.use('/dashboard', isAuth, dashboard);
+router.use('/', dashboard);
 router.use("/login", login);
 router.use("/logout", logout);
-router.use("/public", public);
-router.use("/stocks", stocks);
+router.use("/stocks",isAuth, stocks);
+router.use("/reports", isAuth, reports);
+router.use("/competition", isAuth, competition);
+router.use('/tutorial', isAuth, tutorial);
 
 
 module.exports = router;
