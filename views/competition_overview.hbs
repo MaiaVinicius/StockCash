@@ -2,40 +2,41 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2 style="font-weight: 600; color: rgba(0,0,0,0.64)"><span class="fa fa-trophy"></span> Ranking da competição
+                <h2 style="font-weight: 600; color: rgba(0,0,0,0.64)"><span class="fa fa-trophy"></span> Ranking da
+                    competição
                 </h2>
                 <div class="clearfix"></div>
             </div>
-                <div class="x_content table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th style="text-align: center">Rank</th>
-                            <th style="text-align: center">Trader</th>
-                            <th class="hidden-xs" style="text-align: center">Ganho Acumulado</th>
-                            <th style="text-align: center">Rentabilidade</th>
+            <div class="x_content table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">Rank</th>
+                        <th style="text-align: center">Trader</th>
+                        <th class="hidden-xs" style="text-align: center">Ganho Acumulado</th>
+                        <th style="text-align: center">Rentabilidade</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each rank}}
+                        <tr class="rankrow">
+                            <td id="ranktd" data-id="{{this.user_id}}" style="text-align: center;"
+                                class="col-md-1"></td>
+                            <td class="col-md-6" style="text-align: center;"><strong>{{this.name}}</strong></td>
+                            <td id="acumulado" data-acumulado="{{this.acumulado}}" class="hidden-xs col-md-4"
+                                style="text-align: center;">{{this.acumulado}}</td>
+                            <td id="variacao" data-variacao="{{this.variacao}}" class="col-md-1"
+                                style="text-align: center;">{{this.variacao}}</td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        {{#each rank}}
-                            <tr class="rankrow">
-                                <td id="ranktd" data-id="{{this.user_id}}" style="text-align: center;"
-                                    class="col-md-1"></td>
-                                <td class="col-md-6" style="text-align: center;"><strong>{{this.name}}</strong></td>
-                                <td id="acumulado" data-acumulado="{{this.acumulado}}" class="hidden-xs col-md-4"
-                                    style="text-align: center;">{{this.acumulado}}</td>
-                                <td id="variacao" data-variacao="{{this.variacao}}" class="col-md-1"
-                                    style="text-align: center;">{{this.variacao}}</td>
-                            </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
+                    {{/each}}
+                    </tbody>
+                </table>
 
-                </div>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2 style="font-weight: 600; color: rgba(0,0,0,0.64)"><span class="fa fa-vcard"></span> Informações
@@ -55,7 +56,8 @@
                 <p style="font-family: Montserrat;font-weight: 300; margin-bottom: 15px;"><i class="fa fa-clock-o"></i>
                       Data de Término: <span style="font-weight: 400">{{competitioninfo.enddate}}</span></p>
                 <p style="font-family: Montserrat;font-weight: 300; margin-bottom: 15px;"><i class="fa fa-user"></i>
-                      Traders na competição: <span style="font-weight: 400">{{competitioninfo.players}}/{{competitioninfo.max_users}}</span></p>
+                      Traders na competição: <span style="font-weight: 400">{{competitioninfo.players}}
+                        /{{competitioninfo.max_users}}</span></p>
                 <hr>
                 <p style="font-family: Montserrat; text-align: center">
                     <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger">Sair da
@@ -64,61 +66,29 @@
                 </p>
             </div>
         </div>
-
-        <div class="x_panel">
-            <div class="x_title">
-                <h2 style="font-weight: 600; color: rgba(0,0,0,0.64)"><span class="fa fa-envelope"></span> Solicitações
-                </h2>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div class="x_content table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead>
-                        <tr>
-                            <th style="text-align: center">Trader</th>
-                            <th style="text-align: center">Ação</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{#each requests}}
-                            <tr>
-                                <td class="col-md-4" style="text-align: center; font-family: Montserrat">{{this.name}}</td>
-                                <td class="col-md-3" style="text-align: center">
-                                    <a href="#" id="acceptrequest" data-id="{{this.user_id}}"><i style="font-size: 20px; margin-right: 15px; color: green" class="fa fa-check"></i></a>
-                                    <a href="#" id="denyrequest" data-id="{{this.user_id}}"><i style="font-size: 20px; color: red;" class="fa fa-close"></i></a>
-                                </td>
-                            </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </div>
     </div>
 
-</div>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Confirmar ação</h4>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmar ação</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-family: Montserrat">Deseja realmente sair da competição?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                    <button type="button" id="confirmexit" class="btn btn-danger">Sim</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <p style="font-family: Montserrat">Deseja realmente sair da competição?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
-                <button type="button" id="confirmexit" class="btn btn-danger">Sim</button>
-            </div>
+
         </div>
-
     </div>
 </div>
 
@@ -204,8 +174,8 @@
 
 <script>
     $("#acceptrequest").on("click", function () {
-       var userId = $(this).data("id");
-       $.post("/competition/acceptrequest", {userId: userId});
+        var userId = $(this).data("id");
+        $.post("/competition/acceptrequest", {userId: userId});
         window.setTimeout('location.reload()', 300)
     });
 

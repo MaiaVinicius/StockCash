@@ -174,11 +174,11 @@
         </div>
 
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="text-align: center">
-            <h1 style="font-weight: 600">114</h1>
+            <h1 style="font-weight: 600"><span id="stocks">0</span></h1>
             <h2><strong>Ações listadas</strong></h2>
             <div style="word-wrap: break-word;
    width: 250px; margin: 0 auto; font-size: 15px;" class="texto">
-                <p>Possuímos as principais Ações Blue Chips e as listadas na carteira da IBOV em preço e tempo real.</p>
+                <p>Possuímos as principais Ações Blue Chips e as listadas na carteira da IBOV com o preço e tempo real.</p>
             </div>
         </div>
 
@@ -188,7 +188,7 @@
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fastclick.js"></script>
+<script type="text/javascript" src="/js/jquery.animateNumber.min.js"></script>
 
 <script src="/js/custom.min.js"></script>
 <script type="text/javascript" src="/js/login.js"></script>
@@ -260,4 +260,8 @@
             $("#register-submit").removeAttr('disabled');
         }
     });
+</script>
+
+<script>
+    $('#stocks').animateNumber({ number: 113 });
 </script>

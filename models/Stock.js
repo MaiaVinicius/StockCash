@@ -11,7 +11,7 @@ module.exports.getAll = function (cb) {
 };
 
 module.exports.getAllWithPrices = function (cb) {
-    connection.query("SELECT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a\n" +
+    connection.query("SELECT DISTINCT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a\n" +
         "        LEFT JOIN stocks_prices b ON b.stock_symbol = a.symbol WHERE a.active = 1", function (err, result) {
 
         cb(result);
@@ -35,13 +35,13 @@ module.exports.addPrice = function (stockSymbol, price) {
 };
 
 module.exports.getTopFive = function (cb) {
-  connection.query("SELECT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a LEFT JOIN stocks_prices b ON b.stock_symbol = a.symbol WHERE a.active = 1 ORDER BY variation desc limit 5",  function (err, result) {
+  connection.query("SELECT DISTINCT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a LEFT JOIN stocks_prices b ON b.stock_symbol = a.symbol WHERE a.active = 1 ORDER BY variation desc limit 5",  function (err, result) {
       cb(result);
   })
 };
 
 module.exports.getLeastFive = function (cb) {
-    connection.query("SELECT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a LEFT JOIN stocks_prices b ON b.stock_symbol = a.symbol WHERE a.active = 1 ORDER BY variation asc limit 5",  function (err, result) {
+    connection.query("SELECT DISTINCT a.*, ((a.price * 100 / (SELECT z.price FROM stocks_prices z WHERE z.stock_symbol = a.symbol and DATE(z.date) = CURDATE() )) - 100)variation FROM stocks a LEFT JOIN stocks_prices b ON b.stock_symbol = a.symbol WHERE a.active = 1 ORDER BY variation asc limit 5",  function (err, result) {
         cb(result);
     })
 };

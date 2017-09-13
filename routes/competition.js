@@ -32,7 +32,6 @@ router.get("/", function (req, res) {
                 date = date.getFullYear() + '-' +
                     ('00' + (date.getMonth())).slice(-2) + '-' +
                     ('00' + date.getDate()).slice(-2);
-                console.log(date);
 
                 var endDate = Date.parse(date);
                 var todaydate = Date.parse(today);
@@ -52,7 +51,8 @@ router.get("/", function (req, res) {
                                                 userinfo: userinfo,
                                                 topone: topone,
                                                 toptwo: toptwo,
-                                                topthree: topthree
+                                                topthree: topthree,
+                                                user: req.session.user
                                             });
                                         } else {
                                             if (result[0].admin === "1") {
@@ -60,13 +60,15 @@ router.get("/", function (req, res) {
                                                     rank: rank,
                                                     userinfo: userinfo,
                                                     competitioninfo: competitioninfo,
-                                                    requests: requests
+                                                    requests: requests,
+                                                    user: req.session.user
                                                 });
                                             } else {
                                                 res.render("competition_overview", {
                                                     rank: rank,
                                                     userinfo: userinfo,
-                                                    competitioninfo: competitioninfo
+                                                    competitioninfo: competitioninfo,
+                                                    user: req.session.user
                                                 });
                                             }
                                         }
@@ -79,7 +81,7 @@ router.get("/", function (req, res) {
             });
         } else {
             Competition.getAllCompetitions(function (competitions) {
-                res.render("competition", {competitions: competitions});
+                res.render("competition", {competitions: competitions, user: req.session.user});
             });
         }
     });
@@ -179,7 +181,12 @@ router.post("/acceptrequest", function (req, res) {
                 Competition.checkUserCompetition(myUser, function (result) {
                     var competitionId = result[0].competition_id;
                     var val = "0";
+                    if (balance[0].totalbalance === null) {
+                        var totalBalance = "50000";
+                    } else {
                     var totalBalance = balance[0].totalbalance;
+                    }
+                    console.log(totalBalance);
                     Competition.getCompetitionDate(competitionId, function (competitioninfo) {
                         var maxUsers = competitioninfo[0].max_users;
                         var players = competitioninfo[0].players;

@@ -22,7 +22,7 @@ module.exports.new = function (data) {
 };
 
 module.exports.login = function (user, pass, cb) {
-    connection.query("SELECT * FROM users where (username = ? or email = ?) and password = md5(?)",
+    connection.query("SELECT * FROM users where (username = ? or email = ?) and password = ?",
         [user, user, pass], function (err, result) {
 
             cb(result);

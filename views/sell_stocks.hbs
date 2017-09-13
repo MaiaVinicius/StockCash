@@ -1,8 +1,9 @@
-<div class="x_panel">
+<div class="row">
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2 style="color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-cart-plus"></span> Vender ações </h2>
+                <h2 style="color: rgba(0,0,0,0.64); font-weight: 600"><span class="fa fa-cart-plus"></span> Vender ações
+                </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content table-responsive">
@@ -21,7 +22,9 @@
                     {{#each stockswallet}}
                         <tr class="stock-row" data-symbol="{{this.stock_symbol}}">
                             <td style="text-align: left" id="symbol"
-                                data-id="{{this.stock_symbol}}"><div style="width: 4px; height: 20px; background-color: #34495e; margin-right: 5px; display: inline-block; top: 4px; position: relative"></div>{{this.stock_symbol}}</td>
+                                data-id="{{this.stock_symbol}}">
+                                <div style="width: 4px; height: 20px; background-color: #34495e; margin-right: 5px; display: inline-block; top: 4px; position: relative"></div>{{this.stock_symbol}}
+                            </td>
                             <td id="stock_qtd" data-qtd="{{this.quantidade}}">{{this.quantidade}}</td>
                             <td>$ <strong class="stock-price">{{this.price}}</strong></td>
                             <td>
@@ -39,69 +42,70 @@
                     {{/each}}
                     </tbody>
                 </table>
+            </div>
 
-                <!-- modal -->
-                <div id="modal-request-order" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+            <!-- modal -->
+            <div id="modal-request-order" class="modal fade" role="dialog">
+                <div class="modal-dialog">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <form class="form-request-stock stock-row">
-                                <input name="groupId" type="hidden" id="group_id">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Confirmar Ordem</h4>
-                                </div>
-                                <div class="modal-body" style="text-align: center">
-                                    <p>Ação: <strong> <span class="stock-symbol"></span> </strong></p>
-                                    <p>Preço: $
-                                        <strong>
-                                            <span class="stock-price"></span>
-                                        </strong>
-                                    </p>
-                                    <p>Quantidade: <input min="0" max="" type="number" id="stockqtd"
-                                                          style="width: 55px; height: 20px" type="text"></p>
-                                    <p class="warningqtd" style="color: red; display: none">Você não possui essa
-                                        quantidade de ações!</p>
-                                    <p>Total da Ordem: <strong>$ <span id="totalorder"></span></strong></p>
-                                    <div class="loading" style="display: none">
-                                        <p style="#26B99A">Realizando ordem...</p>
-                                        <div class="spinner">
-                                            <div class="double-bounce1"></div>
-                                            <div class="double-bounce2"></div>
-                                        </div>
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <form class="form-request-stock stock-row">
+                            <input name="groupId" type="hidden" id="group_id">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Confirmar Ordem</h4>
+                            </div>
+                            <div class="modal-body" style="text-align: center">
+                                <p>Ação: <strong> <span class="stock-symbol"></span> </strong></p>
+                                <p>Preço: $
+                                    <strong>
+                                        <span class="stock-price"></span>
+                                    </strong>
+                                </p>
+                                <p>Quantidade: <input min="0" max="" type="number" id="stockqtd"
+                                                      style="width: 55px; height: 20px" type="text"></p>
+                                <p class="warningqtd" style="color: red; display: none">Você não possui essa
+                                    quantidade de ações!</p>
+                                <p>Total da Ordem: <strong>$ <span id="totalorder"></span></strong></p>
+                                <div class="loading" style="display: none">
+                                    <p style="#26B99A">Realizando ordem...</p>
+                                    <div class="spinner">
+                                        <div class="double-bounce1"></div>
+                                        <div class="double-bounce2"></div>
                                     </div>
+                                </div>
 
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-send-order-request">Confirmar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar
+                                </button>
+                                <button type="button" class="btn btn-success btn-send-order-request">Confirmar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <div class="col-md-4 col-sm-12 col-xs-12">
-
-        <div class="infotile count" data-balance="{{myBalance}}">
-            <div class="circle" style="background-color: #34495e">
-                <i class="fa fa-2x fa-bank"></i>
-            </div>
-            <p style="">$ {{myBalance}}</p>
-            <div class="teste" style="background-color: #34495e">
-                <p>Disponível para uso</p>
+        <div class="x_panel">
+            <div class="infotile count" data-balance="{{myBalance}}">
+                <div class="circle" style="background-color: #34495e">
+                    <i class="fa fa-2x fa-bank"></i>
+                </div>
+                <p style="">$ {{myBalance}}</p>
+                <div class="teste" style="background-color: #34495e">
+                    <p>Disponível para uso</p>
+                </div>
             </div>
         </div>
 
 
     </div>
-
 </div>
 
 
@@ -164,7 +168,7 @@
                 });
             });
         });
-    }, refreshInterval = 3000; //3 segundos;
+    }, refreshInterval = 6000; //1 min;
 
     setInterval(refreshStockPrices, refreshInterval);
 </script>
@@ -172,12 +176,13 @@
 <script>
     function toogleDisabled($selector) {
         console.log($selector.attr("disabled"))
-        if($selector.attr("disabled")){
+        if ($selector.attr("disabled")) {
             $selector.attr("disabled", false);
-        }else{
+        } else {
             $selector.attr("disabled", true);
         }
     }
+
     $(".stock-row").each(function () {
         var quantidade = $("#stock_qtd", this).data("qtd");
         if (quantidade <= 0) {
@@ -213,8 +218,7 @@
         });
 
 
-
-        $(".btn-send-order-request").on("click", function () {
+        $(".btn-send-order-request").one("click", function () {
             var stockQuantd = $("#stockqtd").val();
             var $btn = $(this);
             toogleDisabled($btn);
@@ -222,11 +226,15 @@
                 $(".warningqtd").css("display", "block");
             }
             else {
-                $.post({url:"/stocks/sell", data:{stockQuantd: stockQuantd, stockSymbol: stockSymbol},success:function () {
-                    setTimeout(function () {
-                        toogleDisabled($btn)
-                    }, 1000);
-                }});
+                $.post({
+                    url: "/stocks/sell",
+                    data: {stockQuantd: stockQuantd, stockSymbol: stockSymbol},
+                    success: function () {
+                        setTimeout(function () {
+                            toogleDisabled($btn)
+                        }, 3000);
+                    }
+                });
                 $(".loading").css("display", "block");
                 setTimeout(window.location.reload.bind(window.location), 1000);
             }

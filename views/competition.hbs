@@ -1,0 +1,195 @@
+<head>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+<div class="x_panel">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 createcompetition" style="text-align: center">
+        <a href="#"><span class="newcompetitionbutton"><img width="150px" src="/img/createcompetition.png"></span></a>
+    </div>
+
+
+    <div class="col-sm-12 col-xs-12 col-lg-12 col-md-12">
+        <div class="formcompetition" style="margin-top: 30px; display: none;">
+            <form id="demo-form2" class="form-horizontal form-label-left" action="/competition/createnew" method="post">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nome da Competição <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <input class="form-control col-md-7 col-sm-12 col-xs-12" id="competition-name" type="text"
+                               name="competitionName" required>
+                        <span id="errorname" style="display: none"><p style="color: red;">Apenas letras a-z, A-Z e espaços são permitidos! (Máximo de 20 characters)</p></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12">Data de Início <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+
+                        <span disabled id="todaydate" class="form-control col-md-7 col-xs-12"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12">Data de Término <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <input type="date" id="end-date" name="endDate" required="required"
+                               class="form-control col-md-7 col-sm-12 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-12 col-xs-12">Máximo de Jogadores <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-3 col-sm-12 col-xs-4">
+                        <input name="maxplayers" id="maxplayers" min="2" max="30"
+                               class="date-picker form-control col-md-7 col-sm-12 col-xs-4" required="required"
+                               type="number">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" id="createcompbtn" class="btn btn-success">Enviar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <hr>
+    </div>
+
+<div class="col-md-12 col-sm-12 col-xs-12" style="text-align: center; margin-bottom: 20px;">
+    <input type="text" id="myInput" onkeyup="myFunction()"
+           placeholder="Procurar competição...">
+</div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+            <table id="competition-list" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Competição</th>
+                    <th style="text-align: center; ">Jogadores</th>
+                    <th style="text-align: center; ">Começo</th>
+                    <th style="text-align: center; ">Término</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each competitions}}
+                    <tr id="competitionrow" style="height: 80px;">
+                        <td style="font-family: Montserrat">{{this.name}}</td>
+                        <td style="font-family: Montserrat; text-align: center">{{this.players}}/ {{this.max_users}} <i
+                                class="fa fa-user" style="opacity: 0.70"></i></td>
+                        <td style="font-family: Montserrat; text-align: center">{{this.startdate}} <i
+                                class="fa fa-calendar" style="opacity: 0.70"></i>
+                        </td>
+                        <td style="font-family: Montserrat; text-align: center">{{this.enddate}} <i
+                                class="fa fa-calendar" style="opacity: 0.70"></i>
+                        </td>
+                        <td style="font-family: Montserrat; text-align: center">
+                            <button data-id="{{this.id}}" id="sendrequest"
+                                    style="background-color:#2A3F54; border: none;"
+                                    class="btn btn-success sendrequest">Participar   <i class="fa fa-plus"></i></button>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    $(".newcompetitionbutton").on("click", function () {
+        $(".formcompetition").slideToggle(500);
+
+    });
+</script>
+
+<script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = dd + '/' + mm + '/' + yyyy;
+    enddate = yyyy + 1 + "-" + mm + "-" + dd;
+    todaydate = yyyy + "-" + mm + "-" + dd;
+
+    $("#todaydate").html(today);
+    $("#end-date").attr("max", enddate);
+    $("#end-date").attr("min", todaydate);
+</script>
+<script>
+    $("#competition-name").on("change", function () {
+        var competitioname = $("#competition-name").val();
+
+        if (competitioname.length < 20) {
+            if (/^[A-Za-z\s]+$/.test(competitioname)) {
+                $("#errorname").css("display", "none");
+            } else {
+                $("#errorname").css("display", "block");
+                $("#createcompbtn").attr("disabled", "disabled");
+            }
+        } else {
+            $("#errorname").css("display", "block");
+            $("#createcompbtn").attr("disabled", "disabled");
+        }
+    });
+</script>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("competition-list");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    var $competitionrow = $("#competitionrow");
+
+    $.each($competitionrow, function () {
+
+        $(".sendrequest").on("click", function () {
+            var competitionId = $(this).data("id");
+            $(this).replaceWith("Solicitação Enviada <i style='color:#26B99A' class='fa fa-check animated bounceIn'></i>");
+            $.post({
+                url: "/competition/request",
+                data: {competitionId: competitionId}
+            });
+        })
+    });
+
+</script>

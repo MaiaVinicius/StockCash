@@ -46,7 +46,7 @@ router.post("/register", function (req, res) {
             var name = postData.name;
             var whitespace = /\s/;
 
-            if (/^[A-Za-z\s]+$/.test(name)) {
+            if (/^[A-Za-zÀ-ÿ\s]+$/.test(name)) {
                 if (name.length < 20) {
                     if (/^[A-Za-z0-9]+$/.test(username)) {
                         if (username.length < 15) {

@@ -268,7 +268,7 @@
                 });
             });
         });
-    }, refreshInterval = 3000; //3 segundos;
+    }, refreshInterval = 6000; //3 segundos;
 
     setInterval(refreshStockPrices, refreshInterval);
 </script>
@@ -308,7 +308,7 @@
 
         });
 
-        $(".btn-send-order-request").on("click", function () {
+        $(".btn-send-order-request").one("click", function () {
             var $sellButton = $(this);
 
             var stockQuantd = $("#stockqtd").val();
@@ -323,7 +323,7 @@
                     success: function () {
                         setTimeout(function () {
                             $sellButton.attr('disabled', false);
-                        }, 1000);
+                        }, 3000);
                     }
                 });
                 $(".loading").css("display", "block");
