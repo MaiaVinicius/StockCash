@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8de9516f-7581-4486-a73a-4784688c6402" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bin/refreshstocks" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/refreshStockPrices.js" afterPath="$PROJECT_DIR$/helpers/refreshStockPrices.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/stockPriceToday.js" afterPath="$PROJECT_DIR$/helpers/stockPriceToday.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,11 +19,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="stockPriceToday.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="stockPriceToday.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/helpers/stockPriceToday.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="refreshstocks" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/refreshstocks">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,7 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/views/group_manage_member.hbs" />
         <option value="$PROJECT_DIR$/views/group_admin.hbs" />
         <option value="$PROJECT_DIR$/views/new_group_error.hbs" />
         <option value="$PROJECT_DIR$/views/group_manage_admin.hbs" />
@@ -133,6 +139,7 @@
         <option value="$PROJECT_DIR$/helpers/refreshStockPrices.js" />
         <option value="$PROJECT_DIR$/helpers/stockPriceToday.js" />
         <option value="$PROJECT_DIR$/bin/refreshstocks.js" />
+        <option value="$PROJECT_DIR$/bin/refreshstocks" />
       </list>
     </option>
   </component>
@@ -395,7 +402,7 @@
       <workItem from="1505237887961" duration="243000" />
       <workItem from="1505238672795" duration="209000" />
       <workItem from="1505266940466" duration="12068000" />
-      <workItem from="1505314664354" duration="9516000" />
+      <workItem from="1505314664354" duration="9700000" />
     </task>
     <task id="LOCAL-00001" summary="adicionei ignore no .idea">
       <created>1501112737761</created>
@@ -450,7 +457,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="632645000" />
+    <option name="totallyTimeSpent" value="632829000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1812" y="59" width="1820" height="990" extended-state="6" />
@@ -817,18 +824,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/refreshstocks">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="36" column="17" lean-forward="false" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/helpers/stockPriceToday.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/refreshstocks">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
