@@ -43,7 +43,7 @@ Stock.getAll(function (stocks) {
 
         for (var i = 0; i < stocks.length; i++) {
             var stock = stocks[i].symbol;
-            t += 300;
+            t += 500;
 
             setTimeout(make.bind(null, stock), t);
 
