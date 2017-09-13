@@ -27,7 +27,7 @@ router.post("/", function (req, res) {
         if (result.length > 0) {
             //usuario existe
             req.session.user = result[0];
-            res.redirect("/competition");
+            res.redirect("/");
         } else {
             //usuario nao existe
             res.redirect("/login?loginError=1");
