@@ -1,7 +1,6 @@
 var request = require("request");
 var interval = 120000;//ms
 var Stock = require("../models/Stock");
-var CronJob = require('cron').CronJob;
 var getEndpointUrl = function (stockSymbol) {
     return "http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stockSymbol + "&interval=1min&outputsize=compact&apikey=CL85UTRJC3TXZPJK";
 };
