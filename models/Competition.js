@@ -56,7 +56,6 @@ module.exports.getCompetitionRank = function (date,competitionId, cb) {
         "\n" +
         "        FROM competitionsxusers c JOIN users u ON c.user_id = u.id WHERE competition_id = ? ORDER BY variacao DESC", [date,date,competitionId], function (err, result) {
         cb(result);
-        console.log(result);
     });
 };
 

@@ -186,7 +186,6 @@ router.post("/acceptrequest", function (req, res) {
                     } else {
                     var totalBalance = balance[0].totalbalance;
                     }
-                    console.log(totalBalance);
                     Competition.getCompetitionDate(competitionId, function (competitioninfo) {
                         var maxUsers = competitioninfo[0].max_users;
                         var players = competitioninfo[0].players;

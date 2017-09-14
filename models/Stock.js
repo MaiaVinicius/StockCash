@@ -29,7 +29,6 @@ module.exports.getStockPrice = function (stock, cb) {
 };
 
 module.exports.addPrice = function (stockSymbol, price) {
-    //console.log(price)
     connection.query("UPDATE stocks SET price = ? WHERE symbol = ?", [price, stockSymbol], function (err, result) {
     });
 };

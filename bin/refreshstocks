@@ -1,10 +1,10 @@
 #! /app/.heroku/node/bin/node
 
 var request = require("request");
-var interval = 120000;//ms
+var interval = 180000;//ms
 var Stock = require("../models/Stock");
 var getEndpointUrl = function (stockSymbol) {
-    return "http://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stockSymbol + "&interval=1min&outputsize=compact&apikey=CL85UTRJC3TXZPJK";
+    return "http://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + stockSymbol + ".sa" + "&interval=1min&outputsize=compact&apikey=CL85UTRJC3TXZPJK";
 };
 
 Stock.getAll(function (stocks) {
@@ -16,8 +16,9 @@ Stock.getAll(function (stocks) {
         }, function (err, response, body) {
             if (body) {
                 if (body["Meta Data"]) {
-                    var timeSeries1MinuteInterval = body["Time Series (1min)"];
-                    var stock = body["Meta Data"]["2. Symbol"];
+                    var timeSeries1MinuteInterval = body["Time Series (Daily)"];
+                    var stock1 = body["Meta Data"]["2. Symbol"];
+                    var stock = stock1.replace(".sa", "");
                     console.log("GOT RESPONSE FOR " + stock);
 
                     var first = false;
@@ -43,7 +44,7 @@ Stock.getAll(function (stocks) {
 
         for (var i = 0; i < stocks.length; i++) {
             var stock = stocks[i].symbol;
-            t += 500;
+            t += 1000;
 
             setTimeout(make.bind(null, stock), t);
 
