@@ -1,23 +1,19 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/User");
-var College = require("../models/College");
 
 router.get("/", function (req, res) {
     var get = req.query;
     if (req.session.user) {
         res.redirect("/");
     } else {
-        College.getAll(function (result) {
             var loginError = get.loginError;
             var registerError = get.registerError;
             res.render('login', {
-                colleges: result,
                 layout: false,
                 loginError: loginError,
                 registerError: registerError
             });
-        });
     }
 });
 
