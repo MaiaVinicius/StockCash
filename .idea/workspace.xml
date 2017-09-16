@@ -394,7 +394,7 @@
       <workItem from="1505591214619" duration="509000" />
       <workItem from="1505591748303" duration="356000" />
       <workItem from="1505592288541" duration="1190000" />
-      <workItem from="1505596267432" duration="3343000" />
+      <workItem from="1505596267432" duration="3553000" />
     </task>
     <task id="LOCAL-00001" summary="adicionei ignore no .idea">
       <created>1501112737761</created>
@@ -449,7 +449,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="674452000" />
+    <option name="totallyTimeSpent" value="674662000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1812" y="59" width="1820" height="990" extended-state="6" />
