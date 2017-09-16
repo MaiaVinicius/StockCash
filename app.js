@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
+var cookieSession = require('cookie-session')
 var hbs = require('hbs');
 
 
@@ -28,7 +28,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, '/public')));
 app.set('trust proxy', 1); // trust first proxy
 
-app.use(session({secret: "secret"}));
+app.use(cookieSession({
+    name: 'session',
+    keys: ["testkeyforcookiesessions"],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 app.use("/", routes_rota);
 
